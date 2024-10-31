@@ -1,0 +1,32 @@
+:deep(.zr-radio) {
+  .ant-radio-inner {
+    background-color: transparent;
+    border-color: #00c0ff50;
+    &::after {
+      background-color: #00c0ff;
+    }
+  }
+  .ant-radio-checked {
+    .ant-radio-inner {
+      border-color: #00c0ff;
+    }
+  }
+}
+
+// zr-radio-group
+:deep(.zr-radio-group) {
+  .ant-radio-button-wrapper {
+    background: #02b5ff00;
+    color: #02b5ff;
+    border: 1px solid #02b5ff;
+    overflow: hidden;
+    &:hover {
+      background: #02b5ff;
+      color: white;
+    }
+    &.ant-radio-button-wrapper-checked {
+      background: #02b5ff;
+      color: white;
+    }
+  }
+}

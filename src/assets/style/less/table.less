@@ -1,0 +1,119 @@
+// header 样式
+.headStyle {
+  background: url('@/assets/images/bg_list_title.png') no-repeat center center;
+  background-size: 100%;
+  // background-position: center -6px;
+}
+
+:deep(.zr-table) {
+  .ant-table .ant-table-container .ant-table-thead tr > th {
+    color: #02b5ff !important;
+  }
+  .ant-table {
+    border-radius: 0;
+    background: transparent !important;
+    &.ant-table-scroll-horizontal {
+      // background-color: red;
+      .ant-table-header {
+        .headStyle; // position: relative;
+        .ant-table-thead {
+          background-image: none;
+          &::after,
+          &::before {
+            display: none;
+          }
+        }
+      }
+    }
+    &.ant-table-bordered {
+      .ant-table-container {
+        border-bottom: 1px solid;
+        border-color: #018fe520;
+      }
+      .ant-table-header {
+        table {
+          thead > tr > th {
+            border-color: #018fe520;
+            &.ant-table-cell-scrollbar {
+              border-color: #018fe520;
+            }
+          }
+          & {
+            border-color: #018fe520;
+          }
+        }
+      }
+    }
+    // 小尺寸head下划线尺寸
+    &.ant-table-small {
+      .ant-table-tbody > tr > td {
+        padding: 5px 5px;
+      }
+      .ant-table-header {
+        &::after,
+        &::before {
+          display: none !important;
+        }
+      }
+      .ant-table-thead {
+        &::after,
+        &::before {
+          display: none !important;
+        }
+      }
+    }
+    // 内容相关
+    .ant-table-container {
+      border-radius: 0;
+      &::before,
+      &::after {
+        display: none;
+      }
+      .ant-table-header {
+        border-radius: 0;
+      }
+      .ant-table-thead {
+        .headStyle;
+        & tr > th {
+          border-bottom-color: transparent;
+          background: transparent;
+          &::before {
+            // background-color: rgba(255, 255, 255, 0.1) !important;
+            background-color: transparent !important;
+          }
+        }
+      }
+      .ant-table-tbody {
+        & > tr {
+          &:hover {
+            background: transparent;
+          }
+          &:last-child > td {
+            border-bottom: 0;
+          }
+          &.ant-table-placeholder:hover > td {
+            background: transparent;
+          }
+        }
+
+        .ant-table-row {
+          &:nth-child(2n) {
+            background-color: #018fe510;
+          }
+          // &:hover {
+          //   background: transparent;
+          // }
+          .ant-table-cell {
+            border-color: #018fe520;
+            &.ant-table-cell-fix-left {
+              background: transparent;
+            }
+            &.ant-table-cell-row-hover {
+              background: #018fe520;
+            }
+          }
+        }
+      }
+    }
+  }
+}

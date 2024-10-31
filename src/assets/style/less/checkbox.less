@@ -1,0 +1,22 @@
+@mixin common() {
+  .ant-checkbox-inner {
+    background: transparent;
+    border-color: #064c7f;
+  }
+  .ant-checkbox-checked {
+    .ant-checkbox-inner {
+      border-color: #00c0ff;
+      &::after {
+        border-color: #00c0ff;
+      }
+    }
+  }
+}
+
+:deep(.zr-checkbox) {
+  @include common();
+}
+
+:deep(.zr-checkbox-group) {
+  @include common();
+}

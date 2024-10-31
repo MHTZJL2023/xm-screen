@@ -1,0 +1,56 @@
+// 子菜单样式
+.common-card() {
+  border: none;
+  background: transparent;
+  &.ant-card-small {
+    .ant-card-head {
+      // background-image: url('@/assets/images/bg_card_title.png');
+    }
+  }
+
+  & > .ant-card-head {
+    padding-right: 15px;
+    padding-left: 45px;
+    margin-left: 15px;
+    border-bottom: none;
+    // background-image: url('@/assets/images/bg_card_title.png');
+    background-repeat: no-repeat;
+    background-position: 0 center;
+    background-size: 430px; // 固定大小  避免不同宽度尺寸变形
+    // background-size: contain; // 固定大小  避免不同宽度尺寸变形
+    box-sizing: border-box;
+    .ant-card-head-wrapper {
+      padding-bottom: 16px;
+      .ant-card-head-title {
+        font-weight: bold;
+        color: #fff;
+        // padding-left: 15px;
+        text-shadow: 0 3px 5px #000;
+      }
+    }
+  }
+  .ant-card-body {
+    margin-top: -4px;
+    padding: 0 15px 15px 15px;
+    color: #fff;
+  }
+}
+
+:deep(.zr-card) {
+  .common-card();
+  &.ant-card-small {
+    .ant-card-head {
+      background-image: url('@/assets/images/bg_card_title.png');
+    }
+  }
+  & > .ant-card-head {
+    background-image: url('@/assets/images/bg_card_title.png');
+  }
+  .ant-card-head-wrapper {
+    padding-bottom: 16px;
+    .ant-card-head-title {
+      font-style: oblique;
+      font-size: 20px;
+    }
+  }
+}

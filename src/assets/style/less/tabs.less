@@ -1,0 +1,75 @@
+@mixin common() {
+  .ant-tabs-nav {
+    margin-bottom: 0;
+    &::before {
+      border-color: #043a60;
+    }
+  }
+  .ant-tabs-ink-bar {
+    height: 2px;
+  }
+  .ant-tabs-tab {
+    position: relative;
+    padding: 5px 15px;
+    background-image: linear-gradient(0deg, #293d5b 0%, #293d5b20 100%);
+    &::before {
+      content: ' ';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 1px;
+      background-color: #5c6f94;
+    }
+    & + .ant-tabs-tab {
+      margin-left: 2px;
+    }
+
+    &.ant-tabs-tab-active {
+      background-image: linear-gradient(0deg, rgb(3, 65, 111) 0%, rgba(0, 150, 255, 0%) 100%);
+    }
+  }
+}
+
+:deep(.zr-tabs) {
+  @include common();
+}
+
+:deep(.zr-extra-tabs) {
+  @include common();
+  &{
+    margin: -14px 0 -6px;
+    .ant-tabs-tab {
+      padding: 4px 15px;
+    }
+  }
+}
+
+// 内容tab
+:deep(.zr-content-tabs) {
+  .ant-tabs-nav {
+    &::before {
+      border-color: #043a60;
+    }
+  }
+  .ant-tabs-ink-bar {
+    height: 2px;
+    background-color: #00faff;
+  }
+  .ant-tabs-tab {
+    position: relative;
+    padding-left: 15px;
+    padding-right: 15px;
+    &:hover {
+      color: #00faff;
+    }
+    & + .ant-tabs-tab {
+      margin-left: 0px;
+    }
+    &.ant-tabs-tab-active {
+      .ant-tabs-tab-btn {
+        color: #00faff;
+      }
+    }
+  }
+}

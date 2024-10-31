@@ -1,0 +1,63 @@
+:deep(.zr-form) {
+  .ant-form-item {
+    // margin-bottom: 10px;
+    .ant-form-item-control-input-content {
+      background-color: transparent;
+      .ant-input-affix-wrapper {
+        background-color: transparent;
+      }
+    }
+  }
+  .ant-form-item-label {
+    .ant-form-item-label-required {
+    }
+  }
+  // input
+  .ant-input {
+    background-color: transparent;
+    border-color: #006199;
+  }
+  // checkbox
+  .ant-checkbox {
+    .ant-checkbox-inner {
+      background-color: transparent;
+      border-color: #00c6ff;
+    }
+  }
+
+  // radio
+  .ant-radio {
+    .ant-radio-inner {
+      background-color: transparent;
+      border-color: #00c0ff50;
+      &::after {
+        background-color: #00c0ff;
+      }
+    }
+    &.ant-radio-checked {
+      .ant-radio-inner {
+        border-color: #00c0ff;
+      }
+    }
+  }
+  //select
+  .ant-select {
+    .ant-select-selector {
+      background-color: transparent;
+      border-color: #006199;
+    }
+    .ant-select-dropdown {
+      background-color: #084f73;
+    }
+  }
+  //picker
+  .ant-picker {
+    background-color: transparent;
+    border-color: #006199;
+    .ant-picker-dropdown {
+      .ant-picker-panel-container {
+        background-color: #084f73;
+      }
+    }
+  }
+}
