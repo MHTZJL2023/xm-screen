@@ -11,14 +11,12 @@
         class="zr-form"
         :rules="rules"
         style="margin: 41px 75px 0 75px"
-        @finish="onFinish"
-      >
+        @finish="onFinish">
         <a-form-item name="username">
           <a-input
             v-model:value="formState.username"
             size="large"
-            autocomplete="on"
-          >
+            autocomplete="on">
             <template #prefix>
               <UserOutlined class="site-form-item-icon" />
             </template>
@@ -28,8 +26,7 @@
           <a-input-password
             v-model:value="formState.password"
             size="large"
-            autocomplete="on"
-          >
+            autocomplete="on">
             <template #prefix>
               <LockOutlined class="site-form-item-icon" />
             </template>
@@ -40,9 +37,9 @@
         </a-form-item> -->
         <div style="display: flex; width: 100%; margin-top: -10px">
           <a-checkbox>记住密码</a-checkbox>
-          <span style="color: #30bbff; font-size: 14px; margin-left: 222px"
-            >忘记密码?</span
-          >
+          <span style="color: #30bbff; font-size: 14px; margin-left: 222px">
+            忘记密码?
+          </span>
         </div>
 
         <a-button
@@ -51,8 +48,7 @@
           class="btn"
           type="primary"
           size="large"
-          html-type="submit"
-        >
+          html-type="submit">
           登录
         </a-button>
       </a-form>
