@@ -5,8 +5,8 @@
  * @LastEditTime: 2025-03-11 11:13:59
  * @Description:
  */
+import BlankView from './BlankView.vue';
 import MainLayout from './Main/index.vue';
 import RouterView from './RouterView.vue';
-import BlankView from './BlankView.vue';
 
-export { MainLayout, RouterView, BlankView };
+export { BlankView, MainLayout, RouterView };
