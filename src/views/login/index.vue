@@ -57,10 +57,10 @@
 </template>
 
 <script lang="ts" setup>
+import { LockOutlined, UserOutlined } from '@ant-design/icons-vue';
+import { message } from 'ant-design-vue';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
-import { message } from 'ant-design-vue';
 import { useForm } from '@/hooks';
 
 const router = useRouter();
@@ -78,6 +78,7 @@ const onFinish = async () => {
     // const { headers, ...data } = values;
     // if (isEmpty(headers) || isEmpty(headers['captcha-code']) || isEmpty(headers['captcha-key'])) throw new Error("请输入验证码！");
     loading.value = true;
+
     // const hashPassword = md5(data.password);
     // await userStore.login(headers, { ...data, password: hashPassword });
     message.success('登录成功！');

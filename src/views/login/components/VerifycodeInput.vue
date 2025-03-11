@@ -5,8 +5,7 @@
         v-model:value="code"
         size="large"
         style="width: calc(100% - 100px)"
-        @change="onChange"
-      >
+        @change="onChange">
         <template #prefix>
           <SafetyOutlined class="site-form-item-icon" />
         </template>
@@ -15,25 +14,22 @@
         :loading="isLoading"
         type="default"
         class="code-container"
-        @click="getImageSrc"
-      >
+        @click="getImageSrc">
         <a-image
           v-if="imageSrc"
           :src="imageSrc"
           :preview="false"
           width="100%"
-          height="100%"
-        />
+          height="100%" />
       </a-button>
     </a-input-group>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue';
-// import { getCaptcha } from '@/service'
-import { message } from 'ant-design-vue';
 import { SafetyOutlined } from '@ant-design/icons-vue';
+import { message } from 'ant-design-vue';
+import { onMounted, ref } from 'vue';
 
 /**
  * 获取验证码
@@ -48,6 +44,7 @@ const getImageSrc = async () => {
     isLoading.value = true;
     imageSrc.value = '';
     code.value = '';
+
     // const res = await getCaptcha()
     const res: any = {};
     imageSrc.value = res.image;

@@ -12,10 +12,10 @@
   padding: 16px;
   margin-bottom: 10px;
   border-radius: 5px;
-  &.dark{
+  &.dark {
     background-color: @dark-bg-color;
   }
-  &.light{
+  &.light {
     background-color: @light-bg-color;
   }
   :deep(.ant-form) {

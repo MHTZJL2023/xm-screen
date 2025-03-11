@@ -1,9 +1,10 @@
 import { isFunction } from 'lodash-es';
 import { computed, ref, watch } from 'vue';
 import { usePagination } from 'vue-request';
-export const useTable: any = (service: any, options?: any) => {
+
+export const useTable: any = (service?: any, options?: any) => {
   const { data, current, pageSize, total, run, params, ...others } =
-    usePagination(service, {
+    usePagination(!service ? () => {} : service, {
       ...options,
       pageSizeKey: 'pages',
     });
@@ -20,13 +21,7 @@ export const useTable: any = (service: any, options?: any) => {
     } else {
       dataSource.value = values?.records; // 默认
     }
-    console.log('--- dataSource.value ---', values.records);
   });
-  // const dataSource = computed(() => {
-  //   console.log('dataSource.value', data.value);
-  //   const values: any = data.value;
-  //   return values?.result;
-  // });
 
   /**
    * 分页
@@ -51,8 +46,6 @@ export const useTable: any = (service: any, options?: any) => {
     filters: any,
     sorter: any,
   ) => {
-    console.log('pageSize', pag);
-
     run({
       pages: pag?.pageSize,
       current: pag?.current,
@@ -68,6 +61,7 @@ export const useTable: any = (service: any, options?: any) => {
    * @return {*}
    */
   const toSearch = (query?: any) => {
+    dataSource.value = [];
     run({
       current: 1,
       pages: pageSize.value,
@@ -76,47 +70,102 @@ export const useTable: any = (service: any, options?: any) => {
   };
 
   /**
-   * 刷新
+   * 刷新数据
+   * 如果isReset为true则重置分页
+   * @param {boolean} isReset
    * @return {*}
    */
-  const toRefresh = () => {
-    run({
-      current: 1,
-      pages: pageSize.value,
-    });
+  const toRefresh = (isReset?: boolean) => {
+    if (!isReset) {
+      run({
+        ...params,
+        current: current.value,
+        pages: pageSize.value,
+      });
+    } else {
+      dataSource.value = [];
+      run({
+        current: 1,
+        pages: pageSize.value,
+      });
+    }
   };
 
   /**
-   * 编辑
-   * updateItem 编辑后的内容
-   * isRefresh 是否刷新页面
+   * 删除行数据
+   * @param {number} index
    * @return {*}
    */
-  const toUpdate = () => {
-    run({
-      ...params.value,
-      current: current.value,
-      pages: pageSize.value,
-    });
+  const toRemoveRowByIndex = (index: number) => {
+    dataSource.value.splice(index, 1);
   };
 
   /**
-   * 更新单条数据 不刷新页面
+   * 更新索引值为index的行内容
+   * 不刷新页面
+   * @param {object} newItem
+   * @param {number} index
+   * @return {*}
+   */
+  const toUpdateRowByIndex = (index: number, newItem: object) => {
+    const currentItem = dataSource.value[index] || {};
+    dataSource.value[index] = Object.assign(currentItem, newItem);
+  };
+
+  /**
+   * 更新行数据中单一字段
+   * 不刷新页面
    * @param {*} key
    * @param {*} value
    * @param {*} updateItem
    * @return {*}
    */
-  const toSingleUpdate = (
+  const toUpdateRowFieldByIndex = (
+    index: number,
     key: string,
     value: string | number,
-    updateItem: any,
   ) => {
-    const findInx = dataSource.value.findIndex(
-      (item: any) => item[key] === value,
-    );
-    const currentItem = dataSource.value[findInx];
-    dataSource.value[findInx] = { ...currentItem, ...updateItem };
+    dataSource.value[index][key] = value;
+  };
+
+  /**
+   * 根据id更新行数
+   * @param {object} newItem
+   * @param {any} id
+   * @return {*}
+   */
+  const toUpdateRowById = (id: string | number, newItem: object) => {
+    const inx = dataSource.value.findIndex((item: any) => item.id === id);
+    if (inx === -1) return;
+    const currentItem = dataSource.value[inx] || {};
+    dataSource.value[inx] = Object.assign(currentItem, newItem);
+  };
+
+  /**
+   * 通过ID查找更新行数据中单一字段
+   * @param {string} key
+   * @param {any} value
+   * @param {any} id
+   * @return {*}
+   */
+  const toUpdateRowFieldById = (
+    id: string | number,
+    key: string,
+    value: any,
+  ) => {
+    const inx = dataSource.value.findIndex((item: any) => item.id === id);
+    if (inx === -1) return;
+    dataSource.value[inx][key] = value;
+  };
+
+  /**
+   * @param {any} id
+   * @return {*}
+   */
+  const toRemoveRowById = (id: string | number) => {
+    const inx = dataSource.value.findIndex((item: any) => item.id === id);
+    if (inx === -1) return;
+    dataSource.value.splice(inx, 1);
   };
 
   return {
@@ -130,8 +179,12 @@ export const useTable: any = (service: any, options?: any) => {
     run,
     toSearch,
     toRefresh,
-    toUpdate,
-    toSingleUpdate,
+    toRemoveRowByIndex,
+    toUpdateRowByIndex,
+    toUpdateRowFieldByIndex,
+    toRemoveRowById,
+    toUpdateRowById,
+    toUpdateRowFieldById,
     ...others,
   };
 };
