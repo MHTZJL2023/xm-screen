@@ -1,46 +1,23 @@
-<!--
- * @Author: chenr 526963089@qq.com
- * @Date: 2023-01-10 10:23:05
- * @LastEditors: chenr 526963089@qq.com
- * @LastEditTime: 2024-09-24 18:05:19
- * @Description:
--->
 <template>
   <div class="layout-main-container">
     <div class="header">
-      <div class="title">水库运行管理矩阵平台</div>
+      <div class="title">产线数字孪生及功效数字化管理系统</div>
       <div class="content">
-        <DateView />
+        <!-- <DateView /> -->
         <Menus style="flex: 1" />
-        <div style="z-index: 999">
+        <!-- <div style="z-index: 999">
           <BaseFullscreen style="margin-right: 25px" />
           <BackView />
-        </div>
+        </div> -->
       </div>
       <div class="bg"></div>
     </div>
-    <a-drawer
-      v-model:open="isOpen"
-      :closable="false"
-      :mask="false"
-      :get-container="false"
-      :style="{ position: 'absolute' }"
-      width="450px"
-      root-class-name="content-left-bg"
-      placement="left"
-    />
-    <!-- <div class="map"></div> -->
+    <!-- <a-drawer v-model:open="isOpen" :closable="false" :mask="false" :get-container="false"
+      :style="{ position: 'absolute' }" width="450px" root-class-name="content-left-bg" placement="left" />
+    <div class="map"></div> -->
     <RouterView></RouterView>
-    <a-drawer
-      v-model:open="isOpen"
-      :closable="false"
-      :mask="false"
-      :get-container="false"
-      :style="{ position: 'absolute' }"
-      width="450px"
-      root-class-name="content-right-bg"
-      placement="right"
-    />
+    <!-- <a-drawer v-model:open="isOpen" :closable="false" :mask="false" :get-container="false"
+      :style="{ position: 'absolute' }" width="450px" root-class-name="content-right-bg" placement="right" /> -->
   </div>
 </template>
 <script lang="ts" setup>
@@ -60,11 +37,9 @@ const isOpen = ref<boolean>(true);
   width: 100%;
   overflow: hidden;
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
-  background-image: radial-gradient(
-    circle at center,
-    rgba(20, 20, 20, 0.614) 40%,
-    rgb(0, 0, 0) 100%
-  );
+  background-image: radial-gradient(circle at center,
+      rgba(20, 20, 20, 0.614) 40%,
+      rgb(0, 0, 0) 100%);
 
   .header {
     position: absolute;
@@ -105,7 +80,13 @@ const isOpen = ref<boolean>(true);
       height: 200px;
       z-index: 2;
       pointer-events: none;
-      background: url(@/assets/images/bg_top_title.png) no-repeat center / cover;
+    }
+
+    .title {
+      width: 694px;
+      height: 69px;
+      background: url(@/assets/images/main/biaotikuang.png) no-repeat center / cover;
+      background-size: 100% 100%;
     }
   }
 }

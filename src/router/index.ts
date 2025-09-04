@@ -1,12 +1,3 @@
-/*
- * @Author: chenr 526963089@qq.com
- * @Date: 2023-02-13 10:18:12
- * @LastEditors: chenr 526963089@qq.com
- * @LastEditTime: 2024-10-31 08:51:22
- * @FilePath: /vite-project/src/router/index.ts
- * @Description: 路由配置
- */
-
 import { markRaw } from 'vue';
 import { MainLayout } from '@/layouts/index';
 import { createRouter, createWebHashHistory } from 'vue-router';
@@ -52,15 +43,10 @@ const constantRouterMap: RouterInterface[] = [
  */
 const rootRouter: RouterInterface = {
   path: '/',
-  redirect: '/test',
-  meta: { title: '工作台' },
+  redirect: '/login',
+  meta: { title: 'login' },
   component: markRaw(MainLayout),
   children: [
-    {
-      path: '/test',
-      name: 'test',
-      component: markRaw(() => import('@/views/test/index.vue')),
-    },
     ...asyncRouterMap,
   ],
 };

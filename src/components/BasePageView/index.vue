@@ -1,98 +1,77 @@
 <template>
-  <a-drawer
-    v-model:open="isOpen"
-    :closable="false"
-    :mask="false"
-    :get-container="false"
-    :style="{ position: 'absolute' }"
-    :width="props.leftWidth ? props.leftWidth : '450px'"
-    root-class-name="page-left-container"
-    placement="left"
-  >
-    <div class="page-left-content">
-      <slot name="left"></slot>
-      <div class="extra">
-        <slot name="left-extra"></slot>
+  <div class="pageView">
+    <div class="tool">
+      <div class="sideControl" @click="toggleVisible"></div>
+      <div class="sel">
+        <img src="@/assets/images/main/gongweitubiao.png" alt="">
+      </div>
+      <div class="sel">
+        <img src="@/assets/images/main/chejiantubiao.png" alt="">
       </div>
     </div>
-  </a-drawer>
-  <div class="map">
-    <slot name="map"></slot>
+    <div class="content" v-show="isVisible">
+      <slot></slot>
+    </div>
+    <div class="footer" v-show="isVisible">
+      <slot name="footer"></slot>
+    </div>
   </div>
-
-  <a-drawer
-    v-model:open="isOpen"
-    :closable="false"
-    :mask="false"
-    :get-container="false"
-    :style="{ position: 'absolute' }"
-    :width="props.rightWidth ? props.rightWidth : '450px'"
-    root-class-name="page-right-container"
-    placement="right"
-  >
-    <div class="page-right-content">
-      <slot name="right"></slot>
-      <div class="extra">
-        <slot name="right-extra"></slot>
-      </div>
-    </div>
-  </a-drawer>
 </template>
 
 <script lang="ts" setup>
 import { ref } from "vue";
 
-interface props {
-  leftWidth?: string;
-  rightWidth?: string;
-}
 
-const props = defineProps<props>();
+// 定义响应式变量控制显示/隐藏
+const isVisible = ref(true);
 
-const isOpen = ref<boolean>(true);
+// 切换显示/隐藏状态的方法
+const toggleVisible = () => {
+  console.log('11', 'toggleVisible')
+  isVisible.value = !isVisible.value;
+};
 </script>
 
 <style scoped lang="less">
-.map {
-  pointer-events: auto;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
+.pageView {
+  margin: 80px 20px 20px 20px;
 
-.page-left-content,
-.page-right-content {
-  height: 100%;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 0;
-  z-index: 999;
-  background-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.1) 50%,
-    rgba(0, 0, 0, 0) 100%
-  );
-  .extra {
-    top: 0;
-    position: absolute;
-    height: 100%;
+  .tool {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+
+    .sideControl {
+      cursor: pointer;
+      width: 37px;
+      height: 27px;
+      background: url(@/assets/images/main/cemianshouhuianniu.png);
+    }
+
+    .sel {
+      cursor: pointer;
+      width: 154px;
+      height: 53px;
+      background: url(@/assets/images/main/xuanzhonggongweibeijing.png);
+      display: flex;
+      align-items: center;
+
+      img {
+        margin: 0 10px
+      }
+    }
   }
-}
-.page-left-content {
-  background-size: 100% 100%;
-  .extra {
-    left: calc(100% + 16px);
+
+  .content {
+    margin: 20px 34px;
+    pointer-events: painted;
   }
-}
-.page-right-content {
-  // background-image: url('@/assets/images/bg_left.png');
-  background-size: 100% 100%;
-  .extra {
-    right: calc(100% + 16px);
+
+  .footer {
+    display: flex;
+    margin-top: 600px;
+    margin-left: 90px;
+    pointer-events: painted;
   }
 }
 </style>
