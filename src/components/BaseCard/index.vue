@@ -1,7 +1,8 @@
 <template>
   <div class="card">
     <div class="title">
-      <img class="title_img" :src="title" />
+      <img v-if="!titleType" class="title_img" :src="title" />
+      <div v-else class="title_text">{{ title }}</div>
       <div class="extra">
         <slot name="extra"></slot>
       </div>
@@ -12,7 +13,8 @@
 <script setup lang="ts">
 
 interface CardProps {
-  title: string
+  title: string,
+  titleType: boolean
 }
 const props = defineProps<CardProps>()
 </script>
@@ -29,7 +31,7 @@ const props = defineProps<CardProps>()
     height: 44px;
     background: url(@/assets/images/main/xiaobiaotibeijing.png);
     background-size: 100% 100%;
-    display: flex;
+    // display: flex;
     align-items: center;
 
     .extra {
@@ -39,6 +41,15 @@ const props = defineProps<CardProps>()
 
     .title_img {
       margin-left: 50px;
+    }
+
+    .title_text {
+      width: 100%;
+      margin-left: 50px;
+      font-size: 18px;
+      color: #fff;
+      font-weight: bold;
+      line-height: 44px;
     }
   }
 }

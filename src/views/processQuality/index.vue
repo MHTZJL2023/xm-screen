@@ -1,6 +1,7 @@
 <template>
   <BasePageView>
     <div style="display: flex;">
+      <Zjcl />
       <BaseCard :title="qxlyfx" class="card">
         <BaseHighCharts ref="charts" :options="options1" style="height: 240px;"></BaseHighCharts>
       </BaseCard>
@@ -29,6 +30,7 @@ import BaseCard from "@/components/BaseCard/index.vue";
 import BaseHighCharts from "@/components/BaseHighCharts/index.vue";
 import BaseLongCard from '@/components/BaseLongCard/index.vue'
 import Charts from "@/components/Charts/Charts.vue";
+import Zjcl from "@/components/zjcl/index.vue";
 
 import { nextTick, onMounted, ref } from 'vue'
 import cxgpwtgdbb from '@/assets/images/cardTitle/cxgpwtgdbb.png'
