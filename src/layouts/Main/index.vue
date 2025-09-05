@@ -37,9 +37,9 @@ const isOpen = ref<boolean>(true);
   width: 100%;
   overflow: hidden;
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
-  background-image: radial-gradient(circle at center,
-      rgba(20, 20, 20, 0.614) 40%,
-      rgb(0, 0, 0) 100%);
+  // background-image: radial-gradient(circle at center,
+  //     rgba(20, 20, 20, 0.614) 40%,
+  //     rgb(0, 0, 0) 100%);
 
   .header {
     position: absolute;
@@ -85,7 +85,8 @@ const isOpen = ref<boolean>(true);
     .title {
       width: 694px;
       height: 69px;
-      background: url(@/assets/images/main/biaotikuang.png) no-repeat center / cover;
+      background: url(@/assets/images/main/biaotikuang.png) no-repeat center /
+        cover;
       background-size: 100% 100%;
     }
   }

@@ -5,17 +5,28 @@
     </div> -->
     <div class="content">
       <div class="title">用户登录 USER LOGIN</div>
-      <a-form ref="formRef" :model="formState" class="my-form" :rules="rules" style="margin: 41px 75px 0 75px"
+      <a-form
+        ref="formRef"
+        :model="formState"
+        class="my-form"
+        :rules="rules"
+        style="margin: 41px 75px 0 75px"
         @finish="onFinish">
         <a-form-item name="username">
-          <a-input v-model:value="formState.username" size="large" autocomplete="on">
+          <a-input
+            v-model:value="formState.username"
+            size="large"
+            autocomplete="on">
             <template #prefix>
               <UserOutlined class="site-form-item-icon" />
             </template>
           </a-input>
         </a-form-item>
         <a-form-item name="password">
-          <a-input-password v-model:value="formState.password" size="large" autocomplete="on">
+          <a-input-password
+            v-model:value="formState.password"
+            size="large"
+            autocomplete="on">
             <template #prefix>
               <LockOutlined class="site-form-item-icon" />
             </template>
@@ -31,7 +42,13 @@
           </span>
         </div>
 
-        <a-button block :loading="loading" class="btn" type="primary" size="large" html-type="submit">
+        <a-button
+          block
+          :loading="loading"
+          class="btn"
+          type="primary"
+          size="large"
+          html-type="submit">
           登录
         </a-button>
       </a-form>
@@ -65,6 +82,7 @@ const onFinish = async () => {
     // const hashPassword = md5(data.password);
     // await userStore.login(headers, { ...data, password: hashPassword });
     message.success('登录成功！');
+    window.ue5('Web_登录成功');
     router.push('/safeProduction');
   } catch (error: any) {
     error && error.message
