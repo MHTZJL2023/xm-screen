@@ -1,5 +1,5 @@
 <template>
-  <BaseCard title="车辆信息" :title-type="true" class="card">
+  <BaseCard title="示范工位告警" :title-type="true" class="card">
     <div class="list">
       <div class="listItem" v-for="item in list" :key="item">
         <div>
