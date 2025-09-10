@@ -65,6 +65,7 @@ const onFinish = async () => {
     // const hashPassword = md5(data.password);
     // await userStore.login(headers, { ...data, password: hashPassword });
     message.success('登录成功！');
+    window.ue5('Web_登录成功');
     router.push('/safeProduction');
   } catch (error: any) {
     error && error.message
