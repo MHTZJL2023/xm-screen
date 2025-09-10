@@ -1,10 +1,11 @@
 <template>
-  <BaseCard title="在检车辆" :title-type="true" class="card">
+  <BaseCard title="颜色图案检测" :title-type="true" class="card">
     <div class="list">
       <div class="listItem" v-for="item in list" :key="item">
-        <span>{{ item.gw }}</span>
-        <span style="margin-left: 40px;">检测内容：{{ item.content }}</span>
-        <span style="margin-left: auto;">车辆编号：{{ item.code }}</span>
+        <span>车辆编号：{{ item.code }}</span>
+        <span style="margin-left: 10px;">颜色：{{ item.ys }}</span>
+        <span style="margin-left: 10px;">图案：{{ item.ta }}</span>
+        <a-button class="my-button-custom" style="margin-left: auto;">详情</a-button>
       </div>
     </div>
   </BaseCard>
@@ -18,15 +19,20 @@ import { onMounted, ref } from "vue";
 
 const list = ref([
   {
-    gw: "工位1",
-    content: "轴承",
-    code: "AAA233"
+    code: "AAA3",
+    ys: "合格",
+    ta: "合格"
   },
   {
-    gw: "工位1",
-    content: "轴承",
-    code: "AAA233"
+    code: "AAA2",
+    ys: "合格",
+    ta: "合格"
   },
+  {
+    code: "AAA1",
+    ys: "合格",
+    ta: "合格"
+  }
 ])
 
 const getData = async () => {
@@ -40,8 +46,8 @@ onMounted(() => {
 <style lang="less" scoped>
 .card {
   position: absolute;
-  left: -600px;
-  top: -420px;
+  left: 820px;
+  top: 20px;
   width: 420px;
   height: 400px;
 }

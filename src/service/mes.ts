@@ -7,7 +7,8 @@ const API = {
   productionWarnCarsRate: '/mes/MesManager/getProductionWarnCarsRate',
   carInfo: '/mes/MesManager/getCarInfo',
   toPutIntoAndOutPlanRecord: '/mes/toPutIntoAndOutPlanRecord',
-  toOnlineAndOutlineCarsRecord: 'mes/toOnlineAndOutlineCarsRecord'
+  toOnlineAndOutlineCarsRecord: 'mes/toOnlineAndOutlineCarsRecord',
+  cxInfo: '/mes/MesManager/getCxInfo',
 
 };
 
@@ -64,5 +65,12 @@ export const getToOnlineAndOutlineCarsRecord = async (params: { scxmc: string, d
   return request.get({
     url: API.toOnlineAndOutlineCarsRecord,
     params
+  });
+};
+
+// 获取产线信息
+export const getCxInfo = async () => {
+  return request.get({
+    url: API.cxInfo,
   });
 };

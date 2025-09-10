@@ -1,10 +1,10 @@
 <template>
-  <BaseCard title="在检车辆" :title-type="true" class="card">
+  <BaseCard title="空调位检测" :title-type="true" class="card">
     <div class="list">
       <div class="listItem" v-for="item in list" :key="item">
-        <span>{{ item.gw }}</span>
-        <span style="margin-left: 40px;">检测内容：{{ item.content }}</span>
-        <span style="margin-left: auto;">车辆编号：{{ item.code }}</span>
+        <span>车辆编号：{{ item.code }}</span>
+        <span style="margin-left: 40px;">空调安装：{{ item.content }}</span>
+        <a-button class="my-button-custom" style="margin-left: auto;">详情</a-button>
       </div>
     </div>
   </BaseCard>
@@ -19,12 +19,52 @@ import { onMounted, ref } from "vue";
 const list = ref([
   {
     gw: "工位1",
-    content: "轴承",
+    content: "合格",
+    code: "AAA213"
+  },
+  {
+    gw: "工位1",
+    content: "合格",
     code: "AAA233"
   },
   {
     gw: "工位1",
-    content: "轴承",
+    content: "合格",
+    code: "AAA213"
+  },
+  {
+    gw: "工位1",
+    content: "合格",
+    code: "AAA233"
+  },
+  {
+    gw: "工位1",
+    content: "合格",
+    code: "AAA213"
+  },
+  {
+    gw: "工位1",
+    content: "合格",
+    code: "AAA233"
+  },
+  {
+    gw: "工位1",
+    content: "合格",
+    code: "AAA213"
+  },
+  {
+    gw: "工位1",
+    content: "合格",
+    code: "AAA233"
+  },
+  {
+    gw: "工位1",
+    content: "合格",
+    code: "AAA213"
+  },
+  {
+    gw: "工位1",
+    content: "合格",
     code: "AAA233"
   },
 ])
@@ -40,7 +80,7 @@ onMounted(() => {
 <style lang="less" scoped>
 .card {
   position: absolute;
-  left: -600px;
+  left: 820px;
   top: -420px;
   width: 420px;
   height: 400px;

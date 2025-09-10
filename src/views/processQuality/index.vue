@@ -2,18 +2,25 @@
   <BasePageView>
     <div style="display: flex;">
       <Zjcl />
-      <BaseCard :title="qxlyfx" class="card">
+      <Ssjk />
+      <Ktwjc />
+      <Ystajc />
+      <Ryxx />
+      <Clxx />
+      <ClxxR />
+      <Sbzt />
+      <!-- <BaseCard :title="qxlyfx" class="card">
         <BaseHighCharts ref="charts" :options="options1" style="height: 240px;"></BaseHighCharts>
       </BaseCard>
       <BaseLongCard :title1="cxrdpu" :title2="cxqx" :title3="cxgpwtgdbb" class="card_long">
         <template #part1>
           <Charts :options="options2" height="240px" style="width: 100%;"></Charts>
         </template>
-        <template #part2>
+<template #part2>
           <a-table class="my-table" size="small" :columns="columns" :data-source="data" :pagination="false"
             :scroll="{ y: '210px' }" style="height: 240px;"></a-table>
         </template>
-        <template #part3>
+<template #part3>
           <div class="problemList">
             <div class="title">问题点</div>
             <div class="list">
@@ -21,7 +28,7 @@
             </div>
           </div>
         </template>
-      </BaseLongCard>
+</BaseLongCard> -->
     </div>
   </BasePageView>
 </template>
@@ -30,6 +37,13 @@ import BaseCard from "@/components/BaseCard/index.vue";
 import BaseHighCharts from "@/components/BaseHighCharts/index.vue";
 import BaseLongCard from '@/components/BaseLongCard/index.vue'
 import Charts from "@/components/Charts/Charts.vue";
+import Clxx from "@/components/Clxx.vue";
+import ClxxR from "@/components/ClxxR.vue";
+import Ktwjc from "@/components/Ktwjc.vue";
+import Ryxx from "@/components/Ryxx.vue";
+import Sbzt from "@/components/Sbzt.vue";
+import Ssjk from "@/components/Ssjk.vue";
+import Ystajc from "@/components/Ystajc.vue";
 import Zjcl from "@/components/zjcl/index.vue";
 
 import { nextTick, onMounted, ref } from 'vue'

@@ -1,10 +1,10 @@
 <template>
-  <BaseCard title="在检车辆" :title-type="true" class="card">
+  <BaseCard title="车辆信息" :title-type="true" class="card">
     <div class="list">
       <div class="listItem" v-for="item in list" :key="item">
         <span>{{ item.gw }}</span>
-        <span style="margin-left: 40px;">检测内容：{{ item.content }}</span>
-        <span style="margin-left: auto;">车辆编号：{{ item.code }}</span>
+        <span style="margin-left: 30px;">车辆编号：{{ item.code }}</span>
+        <span style="margin-left: 30px;">涂补点位数量：{{ item.content }}</span>
       </div>
     </div>
   </BaseCard>
@@ -19,12 +19,22 @@ import { onMounted, ref } from "vue";
 const list = ref([
   {
     gw: "工位1",
-    content: "轴承",
+    content: "1",
+    code: "AAA213"
+  },
+  {
+    gw: "工位1",
+    content: "2",
     code: "AAA233"
   },
   {
     gw: "工位1",
-    content: "轴承",
+    content: "3",
+    code: "AAA213"
+  },
+  {
+    gw: "工位1",
+    content: "4",
     code: "AAA233"
   },
 ])
@@ -41,7 +51,7 @@ onMounted(() => {
 .card {
   position: absolute;
   left: -600px;
-  top: -420px;
+  top: 20px;
   width: 420px;
   height: 400px;
 }
