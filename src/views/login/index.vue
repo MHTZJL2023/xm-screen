@@ -110,7 +110,8 @@ const onFinish = async () => {
   .content {
     position: absolute;
     top: 290px;
-    left: 695px;
+    left: 50%;
+    transform: translateX(-50%);
     // background-image: url('@/assets/images/login/img_login_frame.png');
     background-size: 100% 100%;
     width: 530px;
@@ -121,7 +122,8 @@ const onFinish = async () => {
       color: #bcfff5;
       line-height: 24px;
       margin-top: 81px;
-      margin-left: 45px;
+      margin-left: 50%;
+      transform: translateX(-50%);
     }
   }
 
