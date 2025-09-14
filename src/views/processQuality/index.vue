@@ -2,8 +2,8 @@
   <BasePageView>
     <div style="display: flex;">
       <Ssjk />
-      <Ktwjc />
-      <Ystajc />
+      <Ktwjc @onDetailsOpen="detailsOpen = true" />
+      <Ystajc @onDetailsOpen="detailsOpen = true" />
       <!-- <Ryxx />
       <Clxx />
       <ClxxR />
@@ -30,6 +30,7 @@
 </BaseLongCard> -->
     </div>
   </BasePageView>
+  <JcxqModal :visible="detailsOpen" @colse="detailsOpen = false" />
 </template>
 <script setup lang="ts">
 import BaseCard from "@/components/BaseCard/index.vue";
@@ -38,6 +39,7 @@ import BaseLongCard from '@/components/BaseLongCard/index.vue'
 import Charts from "@/components/Charts/Charts.vue";
 import Clxx from "@/components/Clxx.vue";
 import ClxxR from "@/components/ClxxR.vue";
+import JcxqModal from "@/components/JcxqModal.vue";
 import Ktwjc from "@/components/Ktwjc.vue";
 import Ryxx from "@/components/Ryxx.vue";
 import Sbzt from "@/components/Sbzt.vue";
@@ -57,6 +59,7 @@ import { Options1, Options2 } from "./options";
 const options1 = ref(Options1);
 const options2 = ref(Options2);
 
+const detailsOpen = ref(false)
 const charts = ref(null)
 const data = ref([])
 const problemList = ref([])

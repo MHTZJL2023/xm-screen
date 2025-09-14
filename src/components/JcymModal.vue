@@ -1,0 +1,208 @@
+<template>
+  <a-modal class="my-modal" title="" :footer="null" v-model:open="props.visible" @cancel="emits('colse')" width="70vw">
+    <div class="content">
+      <div class="search">
+        <a-input-search class="my-input" placeholder="请输入车辆编号" v-model:value="code" @search="onSearch"
+          style="width: 400px;" />
+        <div class="button-container">
+          <a-button class="my-button-custom" style="width: 180px;height:40px;margin-top: 20px;">确认编号</a-button>
+          <a-button class="my-button-custom" style="width: 180px;height:40px;margin-top: 20px;"
+            @click="setVisible = true">阈值设置</a-button>
+          <a-button class="my-button-custom" style="width: 180px;height:40px;margin-top: 20px;"
+            @click="photoVisisble = true">拍摄</a-button>
+        </div>
+      </div>
+      <div class="photo">
+        <p>设计图纸</p>
+        <div class="image">
+          <div class="title">车辆编号：AAAA</div>
+        </div>
+      </div>
+    </div>
+  </a-modal>
+
+  <a-modal class="my-modal" title="阈值设置" :footer="null" v-model:visible="setVisible" width="40vw">
+    <a-table class="table" size="small" :columns="columns" :data-source="data" :pagination="false">
+      <template #valueSet="{ record }">
+        <a-input class="my-input" v-model:value="record.valueSet" style="width: 100px;" :scroll="{ y: 300 }" />
+      </template>
+    </a-table>
+    <div class="footer">
+      <a-button style="width: 100px;" @click="setVisible = false">取消</a-button>
+      <a-button class="my-button-custom" style="width: 100px;margin-left: 20px;">保存</a-button>
+    </div>
+  </a-modal>
+
+  <a-modal class="my-modal" title="拍摄结果" :footer="null" v-model:visible="photoVisisble" width="60vw">
+    <a-row :gutter="[12, 16]">
+      <a-col v-for="(item, index) in photos" :span="index % 2 ? 15 : 9" :key="item.name">
+        <img src="" alt="" style="width: 100%;height: 200px;">
+        <div class="text">{{ item.name }}</div>
+      </a-col>
+    </a-row>
+    <div class="footer">
+      <a-button style="width: 100px;" @click="photoVisisble = false">确认</a-button>
+      <a-button class="my-button-custom" style="width: 100px;margin-left: 20px;">重拍</a-button>
+    </div>
+  </a-modal>
+</template>
+<script setup lang="ts">
+import { ref } from 'vue';
+
+interface Props {
+  visible: boolean;
+}
+
+const props = defineProps<Props>();
+const emits = defineEmits(['colse']);
+const code = ref('');
+const setVisible = ref(false)
+const photoVisisble = ref(false)
+
+
+const photos = ref([
+  {
+    url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+    name: '前围'
+  },
+  {
+    url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+    name: '左侧'
+  },
+  {
+    url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+    name: '后围'
+  },
+  {
+    url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+    name: '右侧'
+  }
+])
+const data = [
+  {
+    name: '颜色',
+    value: '1',
+  },
+  {
+    name: '图案',
+    value: '5',
+  },
+  {
+    name: '空调样式',
+    value: '3',
+  },
+  {
+    name: '空调位置',
+    value: '10',
+  },
+]
+
+const columns = [
+  {
+    title: '检测类型',
+    dataIndex: 'name',
+    key: 'name',
+  },
+  {
+    title: '默认阈值',
+    dataIndex: 'value',
+    key: 'value',
+  },
+  {
+    title: '自定义阈值',
+    dataIndex: 'valueSet',
+    key: 'valueSet',
+    slots: { customRender: 'valueSet' },
+  }
+]
+
+const onSearch = () => {
+  console.log('code', code.value);
+}
+</script>
+<style scoped lang="less">
+.content {
+  display: flex;
+  padding: 20px 10px;
+
+  .search {
+    width: 40%;
+    margin-right: 40px;
+    margin-top: 20px;
+    text-align: center;
+
+    :deep(.ant-input-search-button) {
+      background: #56b88e00 !important;
+      color: #56b88e !important;
+      border: 1px solid #56b88e;
+    }
+
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+
+      .my-button-custom {
+        width: 180px;
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  .photo {
+    width: 60%;
+
+    .title {
+      position: absolute;
+      top: 120px;
+      left: 31vw;
+      border: 1px solid #fff;
+      background: #fff;
+      padding: 5px;
+      color: #000;
+    }
+
+    p {
+      font-size: 19px;
+      font-weight: bold;
+    }
+
+    .image {
+      width: 100%;
+      height: 600px;
+      border: 1px solid #56b88e;
+    }
+  }
+}
+
+.table {
+
+  :deep(.ant-table) {
+    background-color: transparent;
+  }
+
+  :deep(.ant-table-thead>tr>th) {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  :deep(.ant-table-tbody>tr>td) {
+    background-color: transparent;
+  }
+
+  :deep(.ant-table-tbody>tr:hover>td) {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.text {
+  font-size: 15px;
+  color: #56b88e;
+}
+</style>

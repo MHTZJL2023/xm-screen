@@ -10,10 +10,12 @@
       <Charts :options="options2" height="240px" style="width: 100%;"></Charts>
     </BaseCard>
   </BasePageView>
+  <JcymModal :visible="jcymVisible" @colse="jcymVisible = false" />
 </template>
 <script setup lang="ts">
 import BaseCard from "@/components/BaseCard/index.vue";
 import Charts from "@/components/Charts/Charts.vue";
+import JcymModal from '@/components/JcymModal.vue'
 
 import { onMounted, ref } from "vue";
 import cjyhpcl from "@/assets/images/cardTitle/cjyhpcl.png";
@@ -22,6 +24,8 @@ import { getHiddenDangerAbarbeitungRate, getHiddenDangerInvestigationRate } from
 
 import { Options1, Options2 } from './options'
 
+
+const jcymVisible = ref(false);
 const options1 = ref({ ...Options1 });
 const options2 = ref({ ...Options2 });
 

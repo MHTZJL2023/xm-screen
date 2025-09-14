@@ -5,7 +5,7 @@
         <span>车辆编号：{{ item.code }}</span>
         <span style="margin-left: 10px;">颜色：{{ item.ys }}</span>
         <span style="margin-left: 10px;">图案：{{ item.ta }}</span>
-        <a-button class="my-button-custom" style="margin-left: auto;">详情</a-button>
+        <a-button class="my-button-custom" style="margin-left: auto;" @click="emits('onDetailsOpen')">详情</a-button>
       </div>
     </div>
   </BaseCard>
@@ -15,6 +15,7 @@ import BaseCard from "@/components/BaseCard/index.vue";
 
 import { onMounted, ref } from "vue";
 
+const emits = defineEmits(["onDetailsOpen"]);
 
 
 const list = ref([

@@ -4,7 +4,7 @@
       <div class="listItem" v-for="item in list" :key="item">
         <span>车辆编号：{{ item.code }}</span>
         <span style="margin-left: 40px;">空调安装：{{ item.content }}</span>
-        <a-button class="my-button-custom" style="margin-left: auto;">详情</a-button>
+        <a-button class="my-button-custom" style="margin-left: auto;" @click="emits('onDetailsOpen')">详情</a-button>
       </div>
     </div>
   </BaseCard>
@@ -14,7 +14,7 @@ import BaseCard from "@/components/BaseCard/index.vue";
 
 import { onMounted, ref } from "vue";
 
-
+const emits = defineEmits(["onDetailsOpen"]);
 
 const list = ref([
   {
