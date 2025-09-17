@@ -39,9 +39,9 @@ onMounted(() => {
 .card {
   position: absolute;
   left: -600px;
-  top: 20px;
+  top: 155px;
   width: 420px;
-  height: 400px;
+  height: 300px;
 }
 
 

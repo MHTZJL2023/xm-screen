@@ -1,10 +1,11 @@
 <template>
-  <BaseCard title="车辆信息" :title-type="true" class="card">
+  <BaseCard title="原子灰涂补点位统计" :title-type="true" class="card">
     <div class="list">
       <div class="listItem" v-for="item in list" :key="item">
         <span>{{ item.gw }}</span>
         <span style="margin-left: 30px;">车辆编号：{{ item.code }}</span>
         <span style="margin-left: 30px;">涂补点位数量：{{ item.content }}</span>
+        <a-button class="my-button-custom" style="margin-left: auto;">详情</a-button>
       </div>
     </div>
   </BaseCard>
@@ -50,9 +51,9 @@ onMounted(() => {
 <style lang="less" scoped>
 .card {
   position: absolute;
-  left: -600px;
+  left: 720px;
   top: 20px;
-  width: 420px;
+  width: 520px;
   height: 400px;
 }
 

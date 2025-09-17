@@ -1,13 +1,14 @@
 <template>
   <BasePageView>
     <div style="display: flex;">
+      <!-- <Ssjk /> -->
+      <!-- <Ktwjc @onDetailsOpen="detailsOpen = true" />
+      <Ystajc @onDetailsOpen="detailsOpen = true" /> -->
+      <Ryxx />
+      <Yzhtbdw />
+      <Sfgwgj />
+      <Sbzt />
       <Ssjk />
-      <Ktwjc @onDetailsOpen="detailsOpen = true" />
-      <Ystajc @onDetailsOpen="detailsOpen = true" />
-      <!-- <Ryxx />
-      <Clxx />
-      <ClxxR />
-      <Sbzt /> -->
       <!-- <BaseCard :title="qxlyfx" class="card">
         <BaseHighCharts ref="charts" :options="options1" style="height: 240px;"></BaseHighCharts>
       </BaseCard>
@@ -37,14 +38,14 @@ import BaseCard from "@/components/BaseCard/index.vue";
 import BaseHighCharts from "@/components/BaseHighCharts/index.vue";
 import BaseLongCard from '@/components/BaseLongCard/index.vue'
 import Charts from "@/components/Charts/Charts.vue";
-import Clxx from "@/components/Clxx.vue";
-import ClxxR from "@/components/ClxxR.vue";
 import JcxqModal from "@/components/JcxqModal.vue";
 import Ktwjc from "@/components/Ktwjc.vue";
 import Ryxx from "@/components/Ryxx.vue";
 import Sbzt from "@/components/Sbzt.vue";
+import Sfgwgj from "@/components/Sfgwgj.vue";
 import Ssjk from "@/components/Ssjk.vue";
 import Ystajc from "@/components/Ystajc.vue";
+import Yzhtbdw from "@/components/Yzhtbdw.vue";
 import Zjcl from "@/components/zjcl/index.vue";
 
 import { nextTick, onMounted, ref } from 'vue'

@@ -5,14 +5,15 @@
         <div>
           <div>
             <span>姓名：{{ item.code }}</span>
-            <span style="margin-left: 20px;">离开时间：{{ item.content }}</span>
+            <span style="margin-left: 20px;">离开时间：2025.05.01 10:00:000</span>
           </div>
           <div>
             <span>告警时间：{{ item.code }}</span>
             <span style="margin-left: 20px;">关联车辆：{{ item.content }}</span>
           </div>
         </div>
-        <a-button class="my-button-custom" style="margin-left: auto;">详情</a-button>
+        <a-button class="my-button-custom" style="margin-left: auto;">查看</a-button>
+        <a-button class="my-button-custom" style="margin-left: 10px;">确认</a-button>
 
       </div>
     </div>
@@ -89,9 +90,9 @@ onMounted(() => {
 <style lang="less" scoped>
 .card {
   position: absolute;
-  left: 820px;
+  left: 720px;
   top: -420px;
-  width: 420px;
+  width: 520px;
   height: 400px;
 }
 
@@ -108,7 +109,7 @@ onMounted(() => {
   height: auto;
   padding: 2px 20px;
   line-height: 38px;
-  font-size: 16px;
+  font-size: 14px;
   background-color: rgba(75, 162, 132, 0.3); // 偶数行浅色背景
   margin: 5px 0;
 }

@@ -25,7 +25,7 @@ import { getHiddenDangerAbarbeitungRate, getHiddenDangerInvestigationRate } from
 import { Options1, Options2 } from './options'
 
 
-const jcymVisible = ref(false);
+const jcymVisible = ref(true);
 const options1 = ref({ ...Options1 });
 const options2 = ref({ ...Options2 });
 
