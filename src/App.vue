@@ -12,7 +12,11 @@ import dayjs from 'dayjs';
 import { onMounted, computed, nextTick } from 'vue';
 import { theme } from 'ant-design-vue';
 import { system, title } from '@/config/index';
+import { useUEInterface } from '@/hooks';
+
 dayjs.locale('zh-cn');
+
+const { setupUEInterface } = useUEInterface();
 
 const getConfig = computed(() => ({
   algorithm:
@@ -28,7 +32,9 @@ const getConfig = computed(() => ({
  * @param {*} dialogContext
  * @return {*}
  */
-
+const ueInterface = res => {
+  console.log('res :>> ', res);
+};
 onMounted(async () => {
   const doms = document.getElementsByTagName('title');
   await nextTick();
@@ -40,5 +46,7 @@ onMounted(async () => {
   });
 
   if (doms[0]) doms[0].innerHTML = title;
+
+  setupUEInterface();
 });
 </script>
