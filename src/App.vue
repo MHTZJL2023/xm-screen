@@ -32,9 +32,7 @@ const getConfig = computed(() => ({
  * @param {*} dialogContext
  * @return {*}
  */
-const ueInterface = res => {
-  console.log('res :>> ', res);
-};
+
 onMounted(async () => {
   const doms = document.getElementsByTagName('title');
   await nextTick();
