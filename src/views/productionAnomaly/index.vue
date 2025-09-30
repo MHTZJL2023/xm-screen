@@ -29,7 +29,8 @@ import Charts from "@/components/Charts/Charts.vue";
 import { onMounted, ref } from "vue";
 import cjyhpcl from "@/assets/images/cardTitle/cjyhpcl.png";
 import cxryctcb from "@/assets/images/cardTitle/cxryctcb.png";
-import { getHiddenDangerInvestigationRate, getProductionWorkInProcessWarnRecord } from "@/service/saveeyes";
+import { getCarInfo } from "@/service/mes";
+import { getHiddenDangerAbarbeitungRate, getHiddenDangerInvestigationRate } from "@/service/saveeyes";
 
 import { Options1, Options2 } from './options'
 
@@ -39,81 +40,81 @@ const code = ref('')
 const list = ref([])
 const getCjyhpcl = async () => {
   try {
-    // const res = await getProductionWorkInProcessWarnRecord({cxname:code.value});
-    const res = [
-      {
-        aufnr: "R5A002380238",
-        clch: "R5U00679",
-        cllbmc: "大巴",
-        epProcess: "Y",
-        gwmc: "修整工位",
-        htbh: "SA24080014",
-        jxsj: "2024-12-19 09:02:00",
-        remark: "在制车",
-        scxmc: "总装商用车专线生产线",
-        ztbgsj: "2024-12-19 09:02:00"
-      },
-      {
-        aufnr: "R5A002370237",
-        clch: "R5A00237",
-        cllbmc: "中巴",
-        epProcess: "Y",
-        gwmc: "缓冲工位",
-        htbh: "SA24080014",
-        jxsj: "2024-12-19 09:01:00",
-        remark: "在制车",
-        scxmc: "总装商用车专线生产线",
-        ztbgsj: "2024-12-19 09:01:00"
-      },
-      {
-        aufnr: "R5A002380238",
-        clch: "R5U00679",
-        cllbmc: "大巴",
-        epProcess: "Y",
-        gwmc: "修整工位",
-        htbh: "SA24080014",
-        jxsj: "2024-12-19 09:02:00",
-        remark: "在制车",
-        scxmc: "总装商用车专线生产线",
-        ztbgsj: "2024-12-19 09:02:00"
-      },
-      {
-        aufnr: "R5A002370237",
-        clch: "R5A00237",
-        cllbmc: "中巴",
-        epProcess: "Y",
-        gwmc: "缓冲工位",
-        htbh: "SA24080014",
-        jxsj: "2024-12-19 09:01:00",
-        remark: "在制车",
-        scxmc: "总装商用车专线生产线",
-        ztbgsj: "2024-12-19 09:01:00"
-      },
-      {
-        aufnr: "R5A002380238",
-        clch: "R5U00679",
-        cllbmc: "大巴",
-        epProcess: "Y",
-        gwmc: "修整工位",
-        htbh: "SA24080014",
-        jxsj: "2024-12-19 09:02:00",
-        remark: "在制车",
-        scxmc: "总装商用车专线生产线",
-        ztbgsj: "2024-12-19 09:02:00"
-      },
-      {
-        aufnr: "R5A002370237",
-        clch: "R5A00237",
-        cllbmc: "中巴",
-        epProcess: "Y",
-        gwmc: "缓冲工位",
-        htbh: "SA24080014",
-        jxsj: "2024-12-19 09:01:00",
-        remark: "在制车",
-        scxmc: "总装商用车专线生产线",
-        ztbgsj: "2024-12-19 09:01:00"
-      },
-    ]
+    const res = await getCarInfo({ cxname: code.value });
+    // const res = [
+    //   {
+    //     aufnr: "R5A002380238",
+    //     clch: "R5U00679",
+    //     cllbmc: "大巴",
+    //     epProcess: "Y",
+    //     gwmc: "修整工位",
+    //     htbh: "SA24080014",
+    //     jxsj: "2024-12-19 09:02:00",
+    //     remark: "在制车",
+    //     scxmc: "总装商用车专线生产线",
+    //     ztbgsj: "2024-12-19 09:02:00"
+    //   },
+    //   {
+    //     aufnr: "R5A002370237",
+    //     clch: "R5A00237",
+    //     cllbmc: "中巴",
+    //     epProcess: "Y",
+    //     gwmc: "缓冲工位",
+    //     htbh: "SA24080014",
+    //     jxsj: "2024-12-19 09:01:00",
+    //     remark: "在制车",
+    //     scxmc: "总装商用车专线生产线",
+    //     ztbgsj: "2024-12-19 09:01:00"
+    //   },
+    //   {
+    //     aufnr: "R5A002380238",
+    //     clch: "R5U00679",
+    //     cllbmc: "大巴",
+    //     epProcess: "Y",
+    //     gwmc: "修整工位",
+    //     htbh: "SA24080014",
+    //     jxsj: "2024-12-19 09:02:00",
+    //     remark: "在制车",
+    //     scxmc: "总装商用车专线生产线",
+    //     ztbgsj: "2024-12-19 09:02:00"
+    //   },
+    //   {
+    //     aufnr: "R5A002370237",
+    //     clch: "R5A00237",
+    //     cllbmc: "中巴",
+    //     epProcess: "Y",
+    //     gwmc: "缓冲工位",
+    //     htbh: "SA24080014",
+    //     jxsj: "2024-12-19 09:01:00",
+    //     remark: "在制车",
+    //     scxmc: "总装商用车专线生产线",
+    //     ztbgsj: "2024-12-19 09:01:00"
+    //   },
+    //   {
+    //     aufnr: "R5A002380238",
+    //     clch: "R5U00679",
+    //     cllbmc: "大巴",
+    //     epProcess: "Y",
+    //     gwmc: "修整工位",
+    //     htbh: "SA24080014",
+    //     jxsj: "2024-12-19 09:02:00",
+    //     remark: "在制车",
+    //     scxmc: "总装商用车专线生产线",
+    //     ztbgsj: "2024-12-19 09:02:00"
+    //   },
+    //   {
+    //     aufnr: "R5A002370237",
+    //     clch: "R5A00237",
+    //     cllbmc: "中巴",
+    //     epProcess: "Y",
+    //     gwmc: "缓冲工位",
+    //     htbh: "SA24080014",
+    //     jxsj: "2024-12-19 09:01:00",
+    //     remark: "在制车",
+    //     scxmc: "总装商用车专线生产线",
+    //     ztbgsj: "2024-12-19 09:01:00"
+    //   },
+    // ]
     list.value = res;
   } catch (err) {
     console.log(err)
@@ -122,16 +123,17 @@ const getCjyhpcl = async () => {
 
 const getCjyhzgl = async () => {
   try {
-    // const res = await getHiddenDangerAbarbeitungRate();
-    const data = [
-      {
-        compname: "厦门金龙礼宾车有限公司",
-        orgname: "厦门金龙礼宾车有限公司",
-        rate: 0.3
-      }
-    ]
-    const x = data.map(item => item.orgname);
-    const y = data.map(item => item.rate);
+    const res = await getHiddenDangerAbarbeitungRate();
+
+    // const data = [
+    //   {
+    //     compname: "厦门金龙礼宾车有限公司",
+    //     orgname: "厦门金龙礼宾车有限公司",
+    //     rate: 0.3
+    //   }
+    // ]
+    const x = res.map(item => item.orgname);
+    const y = res.map(item => item.rate);
     options2.value.series[0].data = y;
     options2.value.xAxis.data = x;
     console.log('options2', options2.value);

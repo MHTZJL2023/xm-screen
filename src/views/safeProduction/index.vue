@@ -25,20 +25,20 @@ import { getHiddenDangerAbarbeitungRate, getHiddenDangerInvestigationRate } from
 import { Options1, Options2 } from './options'
 
 
-const jcymVisible = ref(true);
+const jcymVisible = ref(false);
 const options1 = ref({ ...Options1 });
 const options2 = ref({ ...Options2 });
 
 const getCjyhpcl = async () => {
   try {
-    // const res = await getHiddenDangerInvestigationRate();
-    const data = [{
-      compname: "厦门金龙礼宾车有限公司",
-      orgname: "厦门金龙礼宾车有限公司",
-      rate: 0.75
-    }]
-    const x = data.map(item => item.orgname);
-    const y = data.map(item => item.rate);
+    const res = await getHiddenDangerInvestigationRate();
+    // const data = [{
+    //   compname: "厦门金龙礼宾车有限公司",
+    //   orgname: "厦门金龙礼宾车有限公司",
+    //   rate: 0.75
+    // }]
+    const x = res.map(item => item.orgname);
+    const y = res.map(item => item.rate);
 
     options1.value.series[0].data = y;
     options1.value.xAxis.data = x;
@@ -51,16 +51,16 @@ const getCjyhpcl = async () => {
 
 const getCjyhzgl = async () => {
   try {
-    // const res = await getHiddenDangerAbarbeitungRate();
-    const data = [
-      {
-        compname: "厦门金龙礼宾车有限公司",
-        orgname: "厦门金龙礼宾车有限公司",
-        rate: 0.3
-      }
-    ]
-    const x = data.map(item => item.orgname);
-    const y = data.map(item => item.rate);
+    const res = await getHiddenDangerAbarbeitungRate();
+    // const data = [
+    //   {
+    //     compname: "厦门金龙礼宾车有限公司",
+    //     orgname: "厦门金龙礼宾车有限公司",
+    //     rate: 0.3
+    //   }
+    // ]
+    const x = res.map(item => item.orgname);
+    const y = res.map(item => item.rate);
     options2.value.series[0].data = y;
     options2.value.xAxis.data = x;
     console.log('options2', options2.value);

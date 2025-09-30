@@ -41,7 +41,7 @@ const getData = async () => {
   // list.value = res.data;
 };
 onMounted(() => {
-  getData();
+  // getData();
 });
 </script>
 <style lang="less" scoped>

@@ -26,7 +26,7 @@
 import BaseCard from "@/components/BaseCard/index.vue";
 
 import { onMounted, ref } from "vue";
-import { countDeviceStatusNum, getLowCardPowerInfo } from "@/service/ewh";
+import { countDeviceStatusNum, getLowCardPowerInfo } from "@/service/person";
 
 
 const jzData = ref({})
@@ -56,61 +56,61 @@ const list = ref([
 ])
 
 const getData = async () => {
-  // const res = await countDeviceStatusNum();
-  const res = {
-    code: 0,
-    message: "成功",
-    online: 2,
-    outline: 3,
-  }
+  const res = await countDeviceStatusNum();
+  // const res = {
+  //   code: 0,
+  //   message: "成功",
+  //   online: 2,
+  //   outline: 3,
+  // }
   jzData.value = res;
   bqData.value = res;
 
-  // const res1 = await getLowCardPowerInfo();
-  const res1 = [
-    {
-      power: 12,
-      sn: "S02A312304",
-      sw_version: "8.14.1.3",
-      tag_id: 604292
-    },
-    {
-      power: 14,
-      sn: "S02A312304",
-      sw_version: "8.14.1.3",
-      tag_id: 603824
-    },
-    {
-      power: 12,
-      sn: "S02A312304",
-      sw_version: "8.14.1.3",
-      tag_id: 604292
-    },
-    {
-      power: 14,
-      sn: "S02A312304",
-      sw_version: "8.14.1.3",
-      tag_id: 603824
-    },
-    {
-      power: 12,
-      sn: "S02A312304",
-      sw_version: "8.14.1.3",
-      tag_id: 604292
-    },
-    {
-      power: 12,
-      sn: "S02A312304",
-      sw_version: "8.14.1.3",
-      tag_id: 604292
-    },
-    {
-      power: 12,
-      sn: "S02A312304",
-      sw_version: "8.14.1.3",
-      tag_id: 604292
-    },
-  ]
+  const res1 = await getLowCardPowerInfo();
+  // const res1 = [
+  //   {
+  //     power: 12,
+  //     sn: "S02A312304",
+  //     sw_version: "8.14.1.3",
+  //     tag_id: 604292
+  //   },
+  //   {
+  //     power: 14,
+  //     sn: "S02A312304",
+  //     sw_version: "8.14.1.3",
+  //     tag_id: 603824
+  //   },
+  //   {
+  //     power: 12,
+  //     sn: "S02A312304",
+  //     sw_version: "8.14.1.3",
+  //     tag_id: 604292
+  //   },
+  //   {
+  //     power: 14,
+  //     sn: "S02A312304",
+  //     sw_version: "8.14.1.3",
+  //     tag_id: 603824
+  //   },
+  //   {
+  //     power: 12,
+  //     sn: "S02A312304",
+  //     sw_version: "8.14.1.3",
+  //     tag_id: 604292
+  //   },
+  //   {
+  //     power: 12,
+  //     sn: "S02A312304",
+  //     sw_version: "8.14.1.3",
+  //     tag_id: 604292
+  //   },
+  //   {
+  //     power: 12,
+  //     sn: "S02A312304",
+  //     sw_version: "8.14.1.3",
+  //     tag_id: 604292
+  //   },
+  // ]
   list.value = res1;
 };
 onMounted(() => {

@@ -1,14 +1,14 @@
 <template>
   <BasePageView>
     <div style="display: flex;">
-      <!-- <Ssjk /> -->
-      <!-- <Ktwjc @onDetailsOpen="detailsOpen = true" />
-      <Ystajc @onDetailsOpen="detailsOpen = true" /> -->
-      <Ryxx />
+      <Ssjk />
+      <Ktwjc @onDetailsOpen="detailsOpen = true" />
+      <Ystajc @onDetailsOpen="detailsOpen = true" />
+      <!-- <Ryxx />
       <Yzhtbdw />
       <Sfgwgj />
       <Sbzt />
-      <Ssjk />
+      <Ssjk /> -->
       <!-- <BaseCard :title="qxlyfx" class="card">
         <BaseHighCharts ref="charts" :options="options1" style="height: 240px;"></BaseHighCharts>
       </BaseCard>

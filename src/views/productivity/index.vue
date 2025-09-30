@@ -35,7 +35,7 @@ import cxrjhdcl from '@/assets/images/cardTitle/cxrjhdcl.png'
 import dclqs from '@/assets/images/cardTitle/dclqs.png'
 import qrjh from '@/assets/images/cardTitle/qrjh.png'
 import qrsj from '@/assets/images/cardTitle/qrsj.png'
-import { getAchievingRateåToday, getPutIntoAndOutCountToday, getActualOnlineAndOutlineCarsNumToday } from '@/service/mes'
+import { getAchievingRateToday, getPutIntoAndOutCountToday, getActualOnlineAndOutlineCarsNumToday } from '@/service/mes'
 
 import { Options1, Options2, Options3, Options4, Options5 } from "./options";
 

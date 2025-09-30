@@ -30,8 +30,12 @@ const list = ref([
 ])
 
 const getData = async () => {
-  // const res = await getCjyhpcl();
-  // list.value = res.data;
+  try {
+    const res = await getCjyhpcl();
+    list.value = res;
+  } catch (error) {
+    console.log(error);
+  }
 };
 onMounted(() => {
   getData();

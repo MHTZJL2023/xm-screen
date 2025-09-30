@@ -12,5 +12,5 @@ export const system = {
   skin: '#0083b2',
 };
 
-export const title = '矩阵平台';
+export const title = '产线数字孪生及功效数字化管理系统';
 export const isProduction = import.meta.env.VITE_NODE_ENV == 'production' && import.meta.env.VITE_APP_PREVIEW != 'true';

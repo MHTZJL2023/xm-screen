@@ -28,11 +28,10 @@ const list = ref([
 ])
 
 const getData = async () => {
-  // const res = await getCjyhpcl();
-  // list.value = res.data;
+
 };
 onMounted(() => {
-  getData();
+  // getData();
 });
 </script>
 <style lang="less" scoped>

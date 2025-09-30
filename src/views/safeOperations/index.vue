@@ -19,7 +19,7 @@ import { onMounted, ref } from "vue";
 import cxclzzzt from "@/assets/images/cardTitle/cxclzzzt.png";
 import cxcqrx from '@/assets/images/cardTitle/cxcqrx.png'
 import { getCountAttendance } from '@/service/ewh'
-import { getCarInfo } from '@/service/mes'
+import { getCarInfo, getCxInfo } from '@/service/mes'
 
 import { Options } from "./options";
 
@@ -61,16 +61,16 @@ const data = ref([])
 
 const getCxcqrx = async () => {
   try {
-    // const res1 = await getCxInfo()
-    // let data:any = []
-    // res1.forEach((item, index) => {
-    //   const res = await getCountAttendance({
-    //   scxid: item.scxid
-    // })
+    const res1 = await getCxInfo()
+    let data: any = []
+    res1.forEach(async (item, index) => {
+      const res = await getCountAttendance({
+        scxid: item.scxid
+      })
 
-    // data.push({value:res.count,name:item.scxmc})
-    // })
-    // pieData.value =data
+      data.push({ value: res.count, name: item.scxmc })
+    })
+    pieData.value = data
   } catch (err) {
     console.log(err)
   }
