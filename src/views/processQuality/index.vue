@@ -29,15 +29,6 @@ import BaseCard from "@/components/BaseCard/index.vue";
 import BaseHighCharts from "@/components/BaseHighCharts/index.vue";
 import BaseLongCard from '@/components/BaseLongCard/index.vue'
 import Charts from "@/components/Charts/Charts.vue";
-import JcxqModal from "@/components/JcxqModal.vue";
-import Ktwjc from "@/components/Ktwjc.vue";
-import Ryxx from "@/components/Ryxx.vue";
-import Sbzt from "@/components/Sbzt.vue";
-import Sfgwgj from "@/components/Sfgwgj.vue";
-import Ssjk from "@/components/Ssjk.vue";
-import Ystajc from "@/components/Ystajc.vue";
-import Yzhtbdw from "@/components/Yzhtbdw.vue";
-import Zjcl from "@/components/zjcl/index.vue";
 
 import { nextTick, onMounted, ref } from 'vue'
 import cxgpwtgdbb from '@/assets/images/cardTitle/cxgpwtgdbb.png'
