@@ -1,7 +1,7 @@
 import request from '@/utils/request';
 
 const API = {
-  warnInfoByClch: "/ekp/ekpManager/getWarnInfoByClch", // 根据车辆车号获取车辆异常记录
+  warnInfoByClch: "/api5/ekp/ekpManager/getWarnInfoByClch", // 根据车辆车号获取车辆异常记录
 };
 
 // 根据车辆车号获取车辆异常记录

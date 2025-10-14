@@ -1,14 +1,14 @@
 import request from '@/utils/request';
 
 const API = {
-  personList: "/person/realPosition/getPersonList", // 获取人员信息数据
-  areaList: '/person/realPosition/getAreaList', // 获取围栏区域信息数据
-  cardAlarmForMonth: '/person/realPosition/getCardAlarmForMonth', // 获取卡的告警信息(近30天)
-  cardAlarmForToday: '/person/realPosition/getCardAlarmForToday', // 获取卡的告警信息(当日)
-  lowCardPowerInfo: '/person/realPosition/getLowCardPowerInfo', // 获取低电量卡的信息
-  countPersonStatus: '/person/realPosition/countPersonStatus', // 人员信息（统计在岗、离岗人数）
-  countDeviceStatusNum: '/person/realPosition/countDeviceStatusNum', // 设备状态统计
-  getLowCardPowerInfo: '/person/realPosition/getLowCardPowerInfo' // 获取低电量卡的信息
+  personList: "/api7/person/realPosition/getPersonList", // 获取人员信息数据
+  areaList: '/api7/person/realPosition/getAreaList', // 获取围栏区域信息数据
+  cardAlarmForMonth: '/api7/person/realPosition/getCardAlarmForMonth', // 获取卡的告警信息(近30天)
+  cardAlarmForToday: '/api7/person/realPosition/getCardAlarmForToday', // 获取卡的告警信息(当日)
+  lowCardPowerInfo: '/api7/person/realPosition/getLowCardPowerInfo', // 获取低电量卡的信息
+  countPersonStatus: '/api7/person/realPosition/countPersonStatus', // 人员信息（统计在岗、离岗人数）
+  countDeviceStatusNum: '/api7/person/realPosition/countDeviceStatusNum', // 设备状态统计
+  getLowCardPowerInfo: '/api7/person/realPosition/getLowCardPowerInfo' // 获取低电量卡的信息
 };
 
 // 获取人员信息数据

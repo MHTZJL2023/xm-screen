@@ -94,8 +94,8 @@ onMounted(() => {
 <style lang="less" scoped>
 .card {
   position: absolute;
-  left: 720px;
-  top: -420px;
+  right: 20px;
+  top: 160px;
   width: 520px;
   height: 400px;
 }

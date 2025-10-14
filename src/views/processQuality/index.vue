@@ -1,26 +1,18 @@
 <template>
   <BasePageView>
     <div style="display: flex;">
-      <Ssjk />
-      <Ktwjc @onDetailsOpen="detailsOpen = true" />
-      <Ystajc @onDetailsOpen="detailsOpen = true" />
-      <!-- <Ryxx />
-      <Yzhtbdw />
-      <Sfgwgj />
-      <Sbzt />
-      <Ssjk /> -->
-      <!-- <BaseCard :title="qxlyfx" class="card">
+      <BaseCard :title="qxlyfx" class="card">
         <BaseHighCharts ref="charts" :options="options1" style="height: 240px;"></BaseHighCharts>
       </BaseCard>
       <BaseLongCard :title1="cxrdpu" :title2="cxqx" :title3="cxgpwtgdbb" class="card_long">
         <template #part1>
           <Charts :options="options2" height="240px" style="width: 100%;"></Charts>
         </template>
-<template #part2>
+        <template #part2>
           <a-table class="my-table" size="small" :columns="columns" :data-source="data" :pagination="false"
             :scroll="{ y: '210px' }" style="height: 240px;"></a-table>
         </template>
-<template #part3>
+        <template #part3>
           <div class="problemList">
             <div class="title">问题点</div>
             <div class="list">
@@ -28,10 +20,9 @@
             </div>
           </div>
         </template>
-</BaseLongCard> -->
+      </BaseLongCard>
     </div>
   </BasePageView>
-  <JcxqModal :visible="detailsOpen" @colse="detailsOpen = false" />
 </template>
 <script setup lang="ts">
 import BaseCard from "@/components/BaseCard/index.vue";

@@ -1,7 +1,7 @@
 import request from '@/utils/request';
 
 const API = {
-  carPositionByclch: "carsposition/CarsPositionManager/getCarPositionByclch", // 根据车辆车号获取当日车辆定位数据
+  carPositionByclch: "/api2/carsposition/CarsPositionManager/getCarPositionByclch", // 根据车辆车号获取当日车辆定位数据
 };
 
 

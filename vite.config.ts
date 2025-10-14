@@ -50,8 +50,37 @@ export default defineConfig({
   server: {
     port: 8080,
     proxy: {
-      '/api': {
+      '/api1': {
+        target: 'http://192.168.42.2:8301/',
+        changeOrigin: true,
+      },
+      '/api2': {
+        target: 'http://192.168.42.2:8302/',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/api/, ''),
+      },
+      '/api3': {
+        target: 'http://192.168.42.2:8303/',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/api/, ''),
+      },
+      '/api4': {
         target: 'http://192.168.42.2:8304/',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/api/, ''),
+      },
+      '/api5': {
+        target: 'http://192.168.42.2:8305/',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/api/, ''),
+      },
+      '/api6': {
+        target: 'http://192.168.42.2:8306/',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/api/, ''),
+      },
+      '/api7': {
+        target: 'http://192.168.42.2:8307/',
         changeOrigin: true,
         rewrite: path => path.replace(/^\/api/, ''),
       },

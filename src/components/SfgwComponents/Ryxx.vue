@@ -15,10 +15,8 @@
 </template>
 <script setup lang="ts">
 import BaseCard from "@/components/BaseCard/index.vue";
-import Charts from "@/components/Charts/Charts.vue";
 
 import { onMounted, ref } from "vue";
-import { countPersonStatus } from "@/service/person";
 
 const personInfo = ref<any>({});
 
@@ -82,8 +80,8 @@ onMounted(() => {
 <style lang="less" scoped>
 .card {
   position: absolute;
-  left: -600px;
-  top: -430px;
+  left: 20px;
+  top: 160px;
   width: 420px;
   height: 250px;
 }

@@ -14,7 +14,7 @@
         <div class="sel_content" v-if="isLeftSelect">
           <div class="item" v-for="item in leftList" :key="item.value" @click="changeSelected1(item)">{{
             item.label
-          }}</div>
+            }}</div>
         </div>
       </div>
       <div class="sel" v-show="isVisible">
@@ -29,24 +29,63 @@
         <div class="sel_content" v-if="isRightSelect">
           <div class="item" v-for="item in rightList" :key="item.value" @click="changeSelected2(item)">{{
             item.label
-          }}</div>
+            }}</div>
         </div>
       </div>
     </div>
-    <div class="content">
+    <div v-if="ueStore.currentWorkshop === '终检车间'" class="content">
+      <div style="display: flex;">
+        <div class="btns">
+          <a-button class="my-button-tool" @click="toJcy">检测页</a-button>
+          <a-button class="my-button-tool" style="margin-left: 20px;" @click="toZym"> 主界面</a-button>
+        </div>
+        <Ssjk />
+        <Ktwjc @onDetailsOpen="detailsOpen = true" />
+        <Ystajc @onDetailsOpen="detailsOpen = true" />
+      </div>
+    </div>
+    <div v-else-if="ueStore.currentWorkshop === '示范工位'" class="content">
+      <div style="display: flex;">
+        <div class="btns">
+          <a-button class="my-button-tool" @click="toZym"> 主界面</a-button>
+        </div>
+        <Ryxx />
+        <Sbzt />
+        <Spjk />
+        <Sfgwgj />
+        <Yzhtbdw />
+      </div>
+    </div>
+    <div v-else-if="ueStore.currentWorkshop" class="content">
       <slot></slot>
     </div>
-    <div class="footer">
+    <div v-if="ueStore.currentWorkshop" class="footer">
       <slot name="footer"></slot>
     </div>
   </div>
+  <JcymModal :visible="jcymVisible" @colse="jcymVisible = false" />
+  <JcxqModal :visible="detailsOpen" @colse="detailsOpen = false" />
 </template>
 
 <script lang="ts" setup>
-import { DownOutlined, UpOutlined } from '@ant-design/icons-vue';
-import { ref } from "vue";
-import { LEFT_LIST, RIGHT_LIST } from '@/config/data_config'
+import JcxqModal from "@/components/JcxqModal.vue";
+import JcymModal from '@/components/JcymModal.vue'
+import Ryxx from "@/components/SfgwComponents/Ryxx.vue";
+import Sbzt from "@/components/SfgwComponents/Sbzt.vue";
+import Sfgwgj from "@/components/SfgwComponents/Sfgwgj.vue";
+import Spjk from "@/components/SfgwComponents/Ssjk.vue";
+import Yzhtbdw from "@/components/SfgwComponents/Yzhtbdw.vue";
+import Ktwjc from "@/components/ZjcjComponents/Ktwjc.vue";
+import Ssjk from "@/components/ZjcjComponents/Ssjk.vue";
+import Ystajc from "@/components/ZjcjComponents/Ystajc.vue";
 
+import { DownOutlined, UpOutlined } from '@ant-design/icons-vue';
+import { ref, watch } from "vue";
+import { LEFT_LIST, RIGHT_LIST } from '@/config/data_config'
+import { useUEInterfaceStore } from '@/stores/modules';
+
+
+const ueStore = useUEInterfaceStore();
 
 // 定义响应式变量控制显示/隐藏
 const isVisible = ref(true);
@@ -56,11 +95,22 @@ const leftList = ref([...LEFT_LIST])
 const leftSelected = ref('');
 const rightList = ref([])
 const rightSelected = ref('');
+const jcymVisible = ref(false);
+
+const detailsOpen = ref(false)
 
 // 切换显示/隐藏状态的方法
 const toggleVisible = () => {
   isVisible.value = !isVisible.value;
 };
+
+const toJcy = () => {
+  jcymVisible.value = true
+}
+
+const toZym = () => {
+  ueStore.currentWorkshop = '总装车间'
+}
 
 // 切换选中项的方法
 const changeSelected1 = (item: string) => {
@@ -86,6 +136,16 @@ const changeSelected2 = (item: string) => {
 
   rightSelected.value = item;
 }
+
+// 监听 ueStore.currentWorkshop 的变化
+watch(
+  () => ueStore.currentWorkshop,
+  (newWorkshop) => {
+    // 当 currentWorkshop 为 '总检车间' 时，设置 jcymVisible 为 true
+    console.log('11', newWorkshop)
+  },
+  { immediate: true } // 立即触发一次回调
+);
 
 </script>
 
@@ -154,6 +214,13 @@ const changeSelected2 = (item: string) => {
     margin-top: 600px;
     margin-left: 90px;
     pointer-events: painted;
+  }
+
+  .btns {
+    position: absolute;
+    right: 60px;
+    top: 100px;
+    display: flex;
   }
 }
 </style>

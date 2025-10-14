@@ -8,14 +8,12 @@
     </BaseCard>
     <BaseCard :title="cjyhzgl">
       <Charts :options="options2" height="240px" style="width: 100%;"></Charts>
-    </BaseCard>
+    </BaseCard>å
   </BasePageView>
-  <JcymModal :visible="jcymVisible" @colse="jcymVisible = false" />
 </template>
 <script setup lang="ts">
 import BaseCard from "@/components/BaseCard/index.vue";
 import Charts from "@/components/Charts/Charts.vue";
-import JcymModal from '@/components/JcymModal.vue'
 
 import { onMounted, ref } from "vue";
 import cjyhpcl from "@/assets/images/cardTitle/cjyhpcl.png";
@@ -25,13 +23,14 @@ import { getHiddenDangerAbarbeitungRate, getHiddenDangerInvestigationRate } from
 import { Options1, Options2 } from './options'
 
 
-const jcymVisible = ref(false);
 const options1 = ref({ ...Options1 });
 const options2 = ref({ ...Options2 });
+
 
 const getCjyhpcl = async () => {
   try {
     const res = await getHiddenDangerInvestigationRate();
+
     // const data = [{
     //   compname: "厦门金龙礼宾车有限公司",
     //   orgname: "厦门金龙礼宾车有限公司",
@@ -52,6 +51,7 @@ const getCjyhpcl = async () => {
 const getCjyhzgl = async () => {
   try {
     const res = await getHiddenDangerAbarbeitungRate();
+
     // const data = [
     //   {
     //     compname: "厦门金龙礼宾车有限公司",

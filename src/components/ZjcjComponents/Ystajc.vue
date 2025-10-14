@@ -1,9 +1,10 @@
 <template>
-  <BaseCard title="空调位检测" :title-type="true" class="card">
+  <BaseCard title="颜色图案检测" :title-type="true" class="card">
     <div class="list">
       <div class="listItem" v-for="item in list" :key="item">
         <span>车辆编号：{{ item.code }}</span>
-        <span style="margin-left: 40px;">空调安装：{{ item.content }}</span>
+        <span style="margin-left: 10px;">颜色：{{ item.ys }}</span>
+        <span style="margin-left: 10px;">图案：{{ item.ta }}</span>
         <a-button class="my-button-custom" style="margin-left: auto;" @click="emits('onDetailsOpen')">详情</a-button>
       </div>
     </div>
@@ -16,57 +17,23 @@ import { onMounted, ref } from "vue";
 
 const emits = defineEmits(["onDetailsOpen"]);
 
+
 const list = ref([
   {
-    gw: "工位1",
-    content: "合格",
-    code: "AAA213"
+    code: "AAA3",
+    ys: "合格",
+    ta: "合格"
   },
   {
-    gw: "工位1",
-    content: "合格",
-    code: "AAA233"
+    code: "AAA2",
+    ys: "合格",
+    ta: "合格"
   },
   {
-    gw: "工位1",
-    content: "合格",
-    code: "AAA213"
-  },
-  {
-    gw: "工位1",
-    content: "合格",
-    code: "AAA233"
-  },
-  {
-    gw: "工位1",
-    content: "合格",
-    code: "AAA213"
-  },
-  {
-    gw: "工位1",
-    content: "合格",
-    code: "AAA233"
-  },
-  {
-    gw: "工位1",
-    content: "合格",
-    code: "AAA213"
-  },
-  {
-    gw: "工位1",
-    content: "合格",
-    code: "AAA233"
-  },
-  {
-    gw: "工位1",
-    content: "合格",
-    code: "AAA213"
-  },
-  {
-    gw: "工位1",
-    content: "合格",
-    code: "AAA233"
-  },
+    code: "AAA1",
+    ys: "合格",
+    ta: "合格"
+  }
 ])
 
 const getData = async () => {
@@ -74,14 +41,14 @@ const getData = async () => {
   // list.value = res.data;
 };
 onMounted(() => {
-  // // getData();
+  // getData();
 });
 </script>
 <style lang="less" scoped>
 .card {
   position: absolute;
-  left: 820px;
-  top: -420px;
+  right: 60px;
+  top: 590px;
   width: 420px;
   height: 400px;
 }

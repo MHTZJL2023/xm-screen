@@ -1,14 +1,14 @@
 import request from '@/utils/request';
 
 const API = {
-  actualOnlineAndOutlineCarsNumToday: "/mes/MesManager/getActualOnlineAndOutlineCarsNumToday", // 统计产线出勤人数
-  achievingRateToday: '/mes/MesManager/getAchievingRateToday',
-  productionWarnRecord: '/mes/MesManager/getProductionWarnRecord',
-  productionWarnCarsRate: '/mes/MesManager/getProductionWarnCarsRate',
-  carInfo: '/mes/MesManager/getCarInfo',
-  toPutIntoAndOutPlanRecord: '/mes/toPutIntoAndOutPlanRecord',
-  toOnlineAndOutlineCarsRecord: 'mes/toOnlineAndOutlineCarsRecord',
-  cxInfo: '/mes/MesManager/getCxInfo',
+  actualOnlineAndOutlineCarsNumToday: "/api1/mes/MesManager/getActualOnlineAndOutlineCarsNumToday", // 统计产线出勤人数
+  achievingRateToday: '/api1/mes/MesManager/getAchievingRateToday',
+  productionWarnRecord: '/api1/mes/MesManager/getProductionWarnRecord',
+  productionWarnCarsRate: '/api1/mes/MesManager/getProductionWarnCarsRate',
+  carInfo: '/api1/mes/MesManager/getCarInfo',
+  toPutIntoAndOutPlanRecord: '/api1/mes/toPutIntoAndOutPlanRecord',
+  toOnlineAndOutlineCarsRecord: '/api1/mes/toOnlineAndOutlineCarsRecord',
+  cxInfo: '/api1/mes/MesManager/getCxInfo',
 
 };
 

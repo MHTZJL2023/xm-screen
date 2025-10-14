@@ -79,7 +79,7 @@ const getCxcqrx = async () => {
 const getCxclzzzt = async () => {
   try {
     // const res = await getCarInfo({
-    //   cxname: '352'
+    //   cxname: ueStore.currentWorkshop || ''
     // })
     const res = [
       {

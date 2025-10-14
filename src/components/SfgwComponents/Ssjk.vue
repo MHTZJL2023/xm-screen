@@ -37,8 +37,8 @@ onMounted(() => {
 <style lang="less" scoped>
 .card {
   position: absolute;
-  left: -600px;
-  top: 155px;
+  left: 20px;
+  top: 740px;
   width: 420px;
   height: 300px;
 }
@@ -51,7 +51,7 @@ onMounted(() => {
 }
 
 .listItem {
-  width: 50px;
+  width: 80px;
   text-align: center;
   height: auto;
   padding: 1px 20px;

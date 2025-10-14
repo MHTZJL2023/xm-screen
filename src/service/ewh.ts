@@ -1,7 +1,7 @@
 import request from '@/utils/request';
 
 const API = {
-  countAttendance: "/ewh/ewhManager/countAttendance", // 统计产线出勤人数
+  countAttendance: "/api6/ewh/ewhManager/countAttendance", // 统计产线出勤人数
 };
 
 // 统计产线出勤人数
