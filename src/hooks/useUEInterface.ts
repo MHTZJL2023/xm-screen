@@ -7,10 +7,9 @@ export const useUEInterface = () => {
   };
 
   const workshop = () => {
-    ueStore.setWorkshop('总装车间');
-    window.ue.interface = (res: '总装车间' | '喷涂车间' | '终检车间' | '示范工位') => {
-      // 将返回的res信息存储到store中
-      ueStore.setWorkshop(res);
+    // ueStore.setWorkshop('喷涂车间');
+    window.ue.interface.ClickWorkshop = (res: { data: '总装车间' | '喷涂车间' | '终检车间' | '示范工位' }) => {
+      ueStore.setWorkshop(res.data);
     };
   };
 
