@@ -114,7 +114,7 @@ const toJcy = () => {
 }
 
 const toZym = () => {
-  ueStore.currentWorkshop = '总装车间'
+  ueStore.setWorkshop(null);
 }
 
 const zzcjBack = () => {
