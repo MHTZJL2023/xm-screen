@@ -102,6 +102,7 @@ const jcymVisible = ref(false);
 const zzcjVisible = ref(false);
 
 const detailsOpen = ref(false)
+const previousWorkshop = ref<any>(null);
 
 // 切换显示/隐藏状态的方法
 const toggleVisible = () => {
@@ -119,6 +120,8 @@ const toZym = () => {
 const zzcjBack = () => {
   window.ue5('Web_隐藏/显示总装车间', false);
   zzcjVisible.value = false
+  // 使用上一次的 workshop 值
+  ueStore.setWorkshop(previousWorkshop.value);
 }
 
 // 切换选中项的方法
@@ -149,12 +152,15 @@ const changeSelected2 = (item: string) => {
 // 监听 ueStore.currentWorkshop 的变化
 watch(
   () => ueStore.currentWorkshop,
-  (newWorkshop) => {
-    // 当 currentWorkshop 为 '总检车间' 时，设置 jcymVisible 为 true
+  (newWorkshop, oldWorkshop) => {
+    // 记录上一次的 workshop 值
+    previousWorkshop.value = oldWorkshop;
+
+    // 当 currentWorkshop 为 '总装车间' 时，设置 zzcjVisible 为 true
     console.log('11', newWorkshop)
     if (newWorkshop === '总装车间') {
-      zzcjVisible.value = true
       window.ue5('Web_隐藏/显示总装车间', true);
+      zzcjVisible.value = true
     }
   },
   { immediate: true } // 立即触发一次回调
