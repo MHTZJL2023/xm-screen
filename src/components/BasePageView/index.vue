@@ -14,7 +14,7 @@
         <div class="sel_content" v-if="isLeftSelect">
           <div class="item" v-for="item in leftList" :key="item.value" @click="changeSelected1(item)">{{
             item.label
-            }}</div>
+          }}</div>
         </div>
       </div>
       <div class="sel" v-show="isVisible">
@@ -29,7 +29,7 @@
         <div class="sel_content" v-if="isRightSelect">
           <div class="item" v-for="item in rightList" :key="item.value" @click="changeSelected2(item)">{{
             item.label
-            }}</div>
+          }}</div>
         </div>
       </div>
     </div>
@@ -57,6 +57,9 @@
       </div>
     </div>
     <div v-else-if="ueStore.currentWorkshop" class="content">
+      <div class="btns" v-if="zzcjVisible">
+        <a-button class="my-button-tool" @click="zzcjBack">返回</a-button>
+      </div>
       <slot></slot>
     </div>
     <div v-if="ueStore.currentWorkshop" class="footer">
@@ -96,6 +99,7 @@ const leftSelected = ref('');
 const rightList = ref([])
 const rightSelected = ref('');
 const jcymVisible = ref(false);
+const zzcjVisible = ref(false);
 
 const detailsOpen = ref(false)
 
@@ -110,6 +114,11 @@ const toJcy = () => {
 
 const toZym = () => {
   ueStore.currentWorkshop = '总装车间'
+}
+
+const zzcjBack = () => {
+  window.ue5('Web_隐藏/显示总装车间', false);
+  zzcjVisible.value = false
 }
 
 // 切换选中项的方法
@@ -143,6 +152,10 @@ watch(
   (newWorkshop) => {
     // 当 currentWorkshop 为 '总检车间' 时，设置 jcymVisible 为 true
     console.log('11', newWorkshop)
+    if (newWorkshop === '总装车间') {
+      zzcjVisible.value = true
+      window.ue5('Web_隐藏/显示总装车间', true);
+    }
   },
   { immediate: true } // 立即触发一次回调
 );
