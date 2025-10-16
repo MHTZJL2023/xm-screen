@@ -1,8 +1,8 @@
 import request from '@/utils/request';
 
 const API = {
-  hiddenDangerAbarbeitungRate: "/saveeyes/saveEyesManager/getHiddenDangerAbarbeitungRate", //计算近30天隐患整改率
-  hiddenDangerInvestigationRate: '/saveeyes/saveEyesManager/getHiddenDangerInvestigationRate' // 计算近30天隐患排查率
+  hiddenDangerAbarbeitungRate: "/api3/saveeyes/saveEyesManager/getHiddenDangerAbarbeitungRate", //计算近30天隐患整改率
+  hiddenDangerInvestigationRate: '/api3/saveeyes/saveEyesManager/getHiddenDangerInvestigationRate' // 计算近30天隐患排查率
 };
 
 

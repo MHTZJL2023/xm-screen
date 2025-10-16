@@ -6,11 +6,12 @@
  * @FilePath: /vite-project/src/utils/request.ts
  * @Description:
  */
+import { message } from 'ant-design-vue';
+import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import axios from 'axios';
 import router from '@/router';
-import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { message } from 'ant-design-vue';
 import { useUserStore } from '@/stores/modules';
+
 class Request {
   instance: AxiosInstance;
   private readonly options: AxiosRequestConfig;
@@ -91,5 +92,5 @@ class Request {
 
 export default new Request({
   baseURL: import.meta.env.VITE_BASE_URL,
-  timeout: 30000, // 请求超时时间
+  timeout: 600000, // 请求超时时间
 });
