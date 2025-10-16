@@ -40,81 +40,81 @@ const code = ref('')
 const list = ref([])
 const getCjyhpcl = async () => {
   try {
-    const res = await getCarInfo({ cxname: code.value });
-    // const res = [
-    //   {
-    //     aufnr: "R5A002380238",
-    //     clch: "R5U00679",
-    //     cllbmc: "大巴",
-    //     epProcess: "Y",
-    //     gwmc: "修整工位",
-    //     htbh: "SA24080014",
-    //     jxsj: "2024-12-19 09:02:00",
-    //     remark: "在制车",
-    //     scxmc: "总装商用车专线生产线",
-    //     ztbgsj: "2024-12-19 09:02:00"
-    //   },
-    //   {
-    //     aufnr: "R5A002370237",
-    //     clch: "R5A00237",
-    //     cllbmc: "中巴",
-    //     epProcess: "Y",
-    //     gwmc: "缓冲工位",
-    //     htbh: "SA24080014",
-    //     jxsj: "2024-12-19 09:01:00",
-    //     remark: "在制车",
-    //     scxmc: "总装商用车专线生产线",
-    //     ztbgsj: "2024-12-19 09:01:00"
-    //   },
-    //   {
-    //     aufnr: "R5A002380238",
-    //     clch: "R5U00679",
-    //     cllbmc: "大巴",
-    //     epProcess: "Y",
-    //     gwmc: "修整工位",
-    //     htbh: "SA24080014",
-    //     jxsj: "2024-12-19 09:02:00",
-    //     remark: "在制车",
-    //     scxmc: "总装商用车专线生产线",
-    //     ztbgsj: "2024-12-19 09:02:00"
-    //   },
-    //   {
-    //     aufnr: "R5A002370237",
-    //     clch: "R5A00237",
-    //     cllbmc: "中巴",
-    //     epProcess: "Y",
-    //     gwmc: "缓冲工位",
-    //     htbh: "SA24080014",
-    //     jxsj: "2024-12-19 09:01:00",
-    //     remark: "在制车",
-    //     scxmc: "总装商用车专线生产线",
-    //     ztbgsj: "2024-12-19 09:01:00"
-    //   },
-    //   {
-    //     aufnr: "R5A002380238",
-    //     clch: "R5U00679",
-    //     cllbmc: "大巴",
-    //     epProcess: "Y",
-    //     gwmc: "修整工位",
-    //     htbh: "SA24080014",
-    //     jxsj: "2024-12-19 09:02:00",
-    //     remark: "在制车",
-    //     scxmc: "总装商用车专线生产线",
-    //     ztbgsj: "2024-12-19 09:02:00"
-    //   },
-    //   {
-    //     aufnr: "R5A002370237",
-    //     clch: "R5A00237",
-    //     cllbmc: "中巴",
-    //     epProcess: "Y",
-    //     gwmc: "缓冲工位",
-    //     htbh: "SA24080014",
-    //     jxsj: "2024-12-19 09:01:00",
-    //     remark: "在制车",
-    //     scxmc: "总装商用车专线生产线",
-    //     ztbgsj: "2024-12-19 09:01:00"
-    //   },
-    // ]
+    // const res = await getCarInfo({ cxname: code.value });
+    const res = [
+      {
+        aufnr: "R5A002380238",
+        clch: "R5U00679",
+        cllbmc: "大巴",
+        epProcess: "Y",
+        gwmc: "修整工位",
+        htbh: "SA24080014",
+        jxsj: "2024-12-19 09:02:00",
+        remark: "在制车",
+        scxmc: "总装商用车专线生产线",
+        ztbgsj: "2024-12-19 09:02:00"
+      },
+      {
+        aufnr: "R5A002370237",
+        clch: "R5A00237",
+        cllbmc: "中巴",
+        epProcess: "Y",
+        gwmc: "缓冲工位",
+        htbh: "SA24080014",
+        jxsj: "2024-12-19 09:01:00",
+        remark: "在制车",
+        scxmc: "总装商用车专线生产线",
+        ztbgsj: "2024-12-19 09:01:00"
+      },
+      {
+        aufnr: "R5A002380238",
+        clch: "R5U00679",
+        cllbmc: "大巴",
+        epProcess: "Y",
+        gwmc: "修整工位",
+        htbh: "SA24080014",
+        jxsj: "2024-12-19 09:02:00",
+        remark: "在制车",
+        scxmc: "总装商用车专线生产线",
+        ztbgsj: "2024-12-19 09:02:00"
+      },
+      {
+        aufnr: "R5A002370237",
+        clch: "R5A00237",
+        cllbmc: "中巴",
+        epProcess: "Y",
+        gwmc: "缓冲工位",
+        htbh: "SA24080014",
+        jxsj: "2024-12-19 09:01:00",
+        remark: "在制车",
+        scxmc: "总装商用车专线生产线",
+        ztbgsj: "2024-12-19 09:01:00"
+      },
+      {
+        aufnr: "R5A002380238",
+        clch: "R5U00679",
+        cllbmc: "大巴",
+        epProcess: "Y",
+        gwmc: "修整工位",
+        htbh: "SA24080014",
+        jxsj: "2024-12-19 09:02:00",
+        remark: "在制车",
+        scxmc: "总装商用车专线生产线",
+        ztbgsj: "2024-12-19 09:02:00"
+      },
+      {
+        aufnr: "R5A002370237",
+        clch: "R5A00237",
+        cllbmc: "中巴",
+        epProcess: "Y",
+        gwmc: "缓冲工位",
+        htbh: "SA24080014",
+        jxsj: "2024-12-19 09:01:00",
+        remark: "在制车",
+        scxmc: "总装商用车专线生产线",
+        ztbgsj: "2024-12-19 09:01:00"
+      },
+    ]
     list.value = res;
   } catch (err) {
     console.log(err)
