@@ -5,10 +5,13 @@
         <span>{{ item.gw }}</span>
         <span style="margin-left: 30px;">车辆编号：{{ item.code }}</span>
         <span style="margin-left: 30px;">涂补点位数量：{{ item.content }}</span>
-        <a-button class="my-button-custom" style="margin-left: auto;">详情</a-button>
+        <a-button class="my-button-custom" style="margin-left: auto;" @click="onDetails">详情</a-button>
       </div>
     </div>
   </BaseCard>
+  <a-modal class="my-modal" title="原子灰点位统计" :footer="null" v-model:visible="visible" width="60vw" centered>
+    <img src="@/assets/images/ptcj/yzhdwtj.png" alt="" style="width: 100%;">
+  </a-modal>
 </template>
 <script setup lang="ts">
 import BaseCard from "@/components/BaseCard/index.vue";
@@ -16,6 +19,11 @@ import BaseCard from "@/components/BaseCard/index.vue";
 import { onMounted, ref } from "vue";
 
 
+
+const visible = ref(false);
+const onDetails = () => {
+  visible.value = true;
+};
 
 const list = ref([
   {

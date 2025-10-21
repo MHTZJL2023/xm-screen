@@ -1,11 +1,18 @@
 <template>
   <BaseCard title="实时监控" :title-type="true" class="card">
-    <div class="list">
-      <div class="listItem" v-for="item in list" :key="item.code"
-        :style="{ color: selected == item.code ? '#59c18e' : '#fff' }" @click="selected = item.code">{{ item.content }}
+    <div>
+      <div style="display: flex;">
+        <div class="list">
+          <div class="listItem" v-for="item in list" :key="item.code"
+            :style="{ color: selected == item.code ? '#59c18e' : '#fff' }" @click="selected = item.code">{{ item.content
+            }}
+          </div>
+        </div>
+        <div class="video">
+          <img src="@/assets/images/ptcj/spjk.png" alt="" style="width: 100%;">
+        </div>
       </div>
     </div>
-    <div class="video"></div>
   </BaseCard>
 </template>
 <script setup lang="ts">
@@ -39,7 +46,7 @@ onMounted(() => {
   position: absolute;
   left: 60px;
   top: 160px;
-  width: 1305px;
+  width: 66vw;
   height: 830px;
 }
 
@@ -63,6 +70,18 @@ onMounted(() => {
 
   &:active {
     color: #59c18e;
+  }
+}
+
+.video {
+  // margin-top: 15px;
+  width: 53vw;
+  height: 71vh;
+  margin: 15px;
+
+  img {
+    width: 100%;
+    height: 100%;
   }
 }
 </style>

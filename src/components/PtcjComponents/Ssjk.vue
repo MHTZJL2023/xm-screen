@@ -1,11 +1,18 @@
 <template>
-  <BaseCard title="实时监控" :title-type="true" class="card">
-    <div class="list">
-      <div class="listItem" v-for="item in list" :key="item.code"
-        :style="{ color: selected == item.code ? '#59c18e' : '#fff' }" @click="selected = item.code">{{ item.content }}
+  <BaseCard title="实时监控" :title-type="true" class="container">
+    <div class="card">
+      <div style="display: flex;">
+        <div class="list">
+          <div class="listItem" v-for="item in list" :key="item.code"
+            :style="{ color: selected == item.code ? '#59c18e' : '#fff' }" @click="selected = item.code">{{ item.content
+            }}
+          </div>
+        </div>
+        <div class="video">
+          <img src="@/assets/images/ptcj/spjk.png" alt="" style="width: 100%;">
+        </div>
       </div>
     </div>
-    <div class="video"></div>
   </BaseCard>
 </template>
 <script setup lang="ts">
@@ -35,7 +42,7 @@ onMounted(() => {
 });
 </script>
 <style lang="less" scoped>
-.card {
+.container {
   position: absolute;
   left: 20px;
   top: 740px;
@@ -43,8 +50,14 @@ onMounted(() => {
   height: 300px;
 }
 
+.card {
+  // display: flex;
+  position: absolute;
+}
+
 
 .list {
+  width: 30%;
   height: calc(400px - 63px);
   overflow-y: scroll;
   margin-top: 10px;
@@ -63,6 +76,17 @@ onMounted(() => {
 
   &:active {
     color: #59c18e;
+  }
+}
+
+.video {
+  margin-top: 10px;
+  width: 300px;
+  height: 245px;
+
+  img {
+    width: 100%;
+    height: 100%;
   }
 }
 </style>

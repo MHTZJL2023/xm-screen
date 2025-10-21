@@ -36,15 +36,15 @@
     <div v-if="ueStore.currentWorkshop === '终检车间'" class="content">
       <div style="display: flex;">
         <div class="btns">
-          <a-button class="my-button-tool" @click="toJcy">检测页</a-button>
+          <a-button class="my-button-tool" @click="detailsOpen = true">检测页</a-button>
           <a-button class="my-button-tool" style="margin-left: 20px;" @click="toZym"> 主界面</a-button>
         </div>
         <Ssjk />
-        <Ktwjc @onDetailsOpen="detailsOpen = true" />
-        <Ystajc @onDetailsOpen="detailsOpen = true" />
+        <Ktwjc />
+        <Ystajc />
       </div>
     </div>
-    <div v-else-if="ueStore.currentWorkshop === '示范工位'" class="content">
+    <div v-else-if="ueStore.currentWorkshop === '喷涂车间'" class="content">
       <div style="display: flex;">
         <div class="btns">
           <a-button class="my-button-tool" @click="toZym"> 主界面</a-button>
@@ -54,6 +54,7 @@
         <Spjk />
         <Sfgwgj />
         <Yzhtbdw />
+        <Gjhf />
       </div>
     </div>
     <div v-else-if="ueStore.currentWorkshop" class="content">
@@ -66,18 +67,17 @@
       <slot name="footer"></slot>
     </div>
   </div>
-  <JcymModal :visible="jcymVisible" @colse="jcymVisible = false" />
-  <JcxqModal :visible="detailsOpen" @colse="detailsOpen = false" />
+  <JcymModal :visible="detailsOpen" @colse="detailsOpen = false" />
 </template>
 
 <script lang="ts" setup>
-import JcxqModal from "@/components/JcxqModal.vue";
 import JcymModal from '@/components/JcymModal.vue'
-import Ryxx from "@/components/SfgwComponents/Ryxx.vue";
-import Sbzt from "@/components/SfgwComponents/Sbzt.vue";
-import Sfgwgj from "@/components/SfgwComponents/Sfgwgj.vue";
-import Spjk from "@/components/SfgwComponents/Ssjk.vue";
-import Yzhtbdw from "@/components/SfgwComponents/Yzhtbdw.vue";
+import Gjhf from "@/components/PtcjComponents/Gjhf.vue";
+import Ryxx from "@/components/PtcjComponents/Ryxx.vue";
+import Sbzt from "@/components/PtcjComponents/Sbzt.vue";
+import Sfgwgj from "@/components/PtcjComponents/Sfgwgj.vue";
+import Spjk from "@/components/PtcjComponents/Ssjk.vue";
+import Yzhtbdw from "@/components/PtcjComponents/Yzhtbdw.vue";
 import Ktwjc from "@/components/ZjcjComponents/Ktwjc.vue";
 import Ssjk from "@/components/ZjcjComponents/Ssjk.vue";
 import Ystajc from "@/components/ZjcjComponents/Ystajc.vue";
@@ -98,7 +98,6 @@ const leftList = ref([...LEFT_LIST])
 const leftSelected = ref('');
 const rightList = ref([])
 const rightSelected = ref('');
-const jcymVisible = ref(false);
 const zzcjVisible = ref(false);
 
 const detailsOpen = ref(false)
@@ -109,9 +108,6 @@ const toggleVisible = () => {
   isVisible.value = !isVisible.value;
 };
 
-const toJcy = () => {
-  jcymVisible.value = true
-}
 
 const toZym = () => {
   ueStore.setWorkshop(null);
@@ -120,6 +116,7 @@ const toZym = () => {
 const zzcjBack = () => {
   window.ue5('Web_隐藏/显示总装车间', false);
   zzcjVisible.value = false
+
   // 使用上一次的 workshop 值
   ueStore.setWorkshop(previousWorkshop.value);
 }

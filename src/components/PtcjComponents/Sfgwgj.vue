@@ -12,12 +12,16 @@
             <span style="margin-left: 20px;">关联车辆：{{ item.content }}</span>
           </div>
         </div>
-        <a-button class="my-button-custom" style="margin-left: auto;">查看</a-button>
+        <a-button class="my-button-custom" style="margin-left: auto;" @click="onView">查看</a-button>
         <a-button class="my-button-custom" style="margin-left: 10px;">确认</a-button>
 
       </div>
     </div>
   </BaseCard>
+
+  <a-modal class="my-modal" title="告警详情" :footer="null" v-model:visible="visible" width="60vw" centered>
+    <img src="@/assets/images/ptcj/gjxq.png" alt="" style="width: 100%;">
+  </a-modal>
 </template>
 <script setup lang="ts">
 import BaseCard from "@/components/BaseCard/index.vue";
@@ -25,7 +29,11 @@ import BaseCard from "@/components/BaseCard/index.vue";
 import { onMounted, ref } from "vue";
 
 
+const visible = ref(false)
 
+const onView = () => {
+  visible.value = true
+}
 const list = ref([
   {
     gw: "工位1",

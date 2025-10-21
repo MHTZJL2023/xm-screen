@@ -25,6 +25,7 @@ const props = defineProps<CardProps>()
   background: url(@/assets/images/main/xiaowaikuang.png);
   background-size: 100% 100%;
   padding: 10px 15px;
+  display: block;
 
   .title {
     width: 226px;

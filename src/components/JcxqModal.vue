@@ -1,6 +1,6 @@
 <template>
   <a-modal class="my-modal" title="检测详情" :footer="null" v-model:open="props.visible" @cancel="emits('colse')"
-    width="70vw">
+    width="1000px" centered>
     <div class="btns">
       <a-button class="my-button-custom" @click="onReport">检测报告</a-button>
       <a-button class="my-button-custom" style="margin-left: 20px;" @click="showReport = false">返回</a-button>
@@ -21,8 +21,8 @@
           <div class="detail">图案误差：5个 检测结果：合格</div>
         </div>
         <div class="imgs">
-          <img src="@/assets/images/icon_exit.png" />
-          <img src="@/assets/images/icon_exit.png" />
+          <img src="@/assets/images/zjcj/image1.png" />
+          <img src="@/assets/images/zjcj/image2.png" />
         </div>
       </div>
       <div class="poiCheck">
@@ -31,8 +31,8 @@
           <div class="info">空调样式：错误 位置偏差：0%。 检测结果：不合格 </div>
         </div>
         <div class="imgs">
-          <img src="@/assets/images/icon_exit.png" />
-          <img src="@/assets/images/icon_exit.png" />
+          <img src="@/assets/images/zjcj/image3.png" />
+          <img src="@/assets/images/zjcj/image4.png" />
         </div>
       </div>
     </div>
@@ -174,6 +174,7 @@ const onReport = () => {
     border: 1px solid #E8E8E8;
     margin-right: 10%;
     padding: 0 20px 20px 20px;
+    height: 450px;
 
     p {
       width: 100%;
@@ -189,7 +190,7 @@ const onReport = () => {
     .imgs {
       img {
         width: 100%;
-        height: 200px;
+        height: 140px;
       }
     }
   }
@@ -198,6 +199,7 @@ const onReport = () => {
     width: 45%;
     border: 1px solid #E8E8E8;
     padding: 0 20px 20px 20px;
+    height: 450px;
 
     p {
       width: 100%;
@@ -213,7 +215,7 @@ const onReport = () => {
     .imgs {
       img {
         width: 100%;
-        height: 200px;
+        height: 160px;
       }
     }
   }

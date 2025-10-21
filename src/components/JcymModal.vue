@@ -1,9 +1,10 @@
 <template>
-  <a-modal class="my-modal" title="" :footer="null" v-model:open="props.visible" @cancel="emits('colse')" width="70vw">
+  <a-modal class="my-modal" title="" :footer="null" v-model:open="props.visible" @cancel="emits('colse')" width="1000px"
+    centered>
     <div class="content">
       <div class="search">
         <a-input-search class="my-input" placeholder="请输入车辆编号" v-model:value="code" @search="onSearch"
-          style="width: 400px;" />
+          style="width: 250px;" />
         <div class="button-container">
           <a-button class="my-button-custom" style="width: 180px;height:40px;margin-top: 20px;">确认编号</a-button>
           <a-button class="my-button-custom" style="width: 180px;height:40px;margin-top: 20px;"
@@ -15,28 +16,28 @@
       <div class="photo">
         <p>设计图纸</p>
         <div class="image">
-          <div class="title">车辆编号：AAAA</div>
+          <img src="@/assets/images/zjcj/image.png" alt="">
         </div>
       </div>
     </div>
   </a-modal>
 
-  <a-modal class="my-modal" title="阈值设置" :footer="null" v-model:visible="setVisible" width="40vw">
+  <a-modal class="my-modal" title="阈值设置" :footer="null" v-model:visible="setVisible" width="500px" centered>
     <a-table class="table" size="small" :columns="columns" :data-source="data" :pagination="false">
       <template #valueSet="{ record }">
         <a-input class="my-input" v-model:value="record.valueSet" style="width: 100px;" :scroll="{ y: 300 }" />
       </template>
     </a-table>
-    <div class="footer">
+    <div class="footer" style="margin-top: 0px;">
       <a-button style="width: 100px;" @click="setVisible = false">取消</a-button>
       <a-button class="my-button-custom" style="width: 100px;margin-left: 20px;">保存</a-button>
     </div>
   </a-modal>
 
-  <a-modal class="my-modal" title="拍摄结果" :footer="null" v-model:visible="photoVisisble" width="60vw">
+  <a-modal class="my-modal" title="拍摄结果" :footer="null" v-model:visible="photoVisisble" width="1000px" centered>
     <a-row :gutter="[12, 16]">
       <a-col v-for="(item, index) in photos" :span="index % 2 ? 15 : 9" :key="item.name">
-        <img src="" alt="" style="width: 100%;height: 200px;">
+        <img :src="imgs[index]" alt="" style="width: 100%;height: 200px;">
         <div class="text">{{ item.name }}</div>
       </a-col>
     </a-row>
@@ -48,13 +49,17 @@
 </template>
 <script setup lang="ts">
 import { ref } from 'vue';
+import Img1 from '@/assets/images/zjcj/img1.png';
+import Img2 from '@/assets/images/zjcj/img2.png';
+import Img3 from '@/assets/images/zjcj/img3.png';
+import Img4 from '@/assets/images/zjcj/img4.png';
 
 interface Props {
   visible: boolean;
 }
-
 const props = defineProps<Props>();
 const emits = defineEmits(['colse']);
+const imgs = ref([Img1, Img3, Img2, Img4]);
 const code = ref('');
 const setVisible = ref(false)
 const photoVisisble = ref(false)
@@ -124,9 +129,11 @@ const onSearch = () => {
 .content {
   display: flex;
   padding: 20px 10px;
+  overflow-y: scroll;
+  height: 450px;
 
   .search {
-    width: 40%;
+    width: 30%;
     margin-right: 40px;
     margin-top: 20px;
     text-align: center;
@@ -151,7 +158,7 @@ const onSearch = () => {
   }
 
   .photo {
-    width: 60%;
+    width: 70%;
 
     .title {
       position: absolute;
@@ -170,8 +177,13 @@ const onSearch = () => {
 
     .image {
       width: 100%;
-      height: 600px;
+      height: 400px;
       border: 1px solid #56b88e;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 }
