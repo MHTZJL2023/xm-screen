@@ -3,13 +3,15 @@
     <div class="card">
       <div style="display: flex;">
         <div class="list">
-          <div class="listItem" v-for="item in list" :key="item.code"
-            :style="{ color: selected == item.code ? '#59c18e' : '#fff' }" @click="selected = item.code">{{ item.content
+          <div class="listItem" v-for="item in list" :key="item.areaId"
+            :style="{ color: selected == item.areaId ? '#59c18e' : '#fff' }" @click="onSelected(item.areaId)">{{
+              item.areaName
             }}
           </div>
         </div>
         <div class="video">
-          <img src="@/assets/images/ptcj/spjk.png" alt="" style="width: 100%;">
+          <!-- <img src="@/assets/images/ptcj/spjk.png" alt="" style="width: 100%;"> -->
+          <BaseFlvVideo :area-id="selected" :video-service="getRtspUrl" />
         </div>
       </div>
     </div>
@@ -17,28 +19,83 @@
 </template>
 <script setup lang="ts">
 import BaseCard from "@/components/BaseCard/index.vue";
+import BaseFlvVideo from "@/components/BaseFlvVideo/src/BaseFlvVideo.vue";
 
 import { onMounted, ref } from "vue";
+import { getAreaList, getRtspUrl } from "@/service/person";
 
 const selected = ref("");
 const list = ref([
   {
     gw: "工位1",
-    content: "监控1",
-    code: "1"
+    areaName: "监控1",
+    areaId: "1"
   },
   {
     gw: "工位1",
-    content: "监控2",
-    code: "2"
+    areaName: "监控2",
+    areaId: "2"
   },
 ])
 
 const getData = async () => {
+  try {
+    const res = await getAreaList();
 
+    // const res = [
+    //   {
+    //     areaId: 44,
+    //     areaName: "报警222",
+    //     xy: [
+    //       {
+    //         x: 8.737717,
+    //         y: 18.659897
+    //       },
+    //       {
+    //         x: 25,
+    //         y: 18.659897
+    //       },
+    //       {
+    //         x: 25,
+    //         y: 24.371315
+    //       },
+    //       {
+    //         x: 8.737717,
+    //         y: 24.371315
+    //       },
+    //       {
+    //         x: 8.737717,
+    //         y: 18.659897
+    //       }
+    //     ]
+    //   }
+    // ]
+
+    list.value = res.map(item => {
+      return {
+        areaName: item.areaName,
+        areaId: item.areaId,
+      }
+    })
+
+    if (res?.length > 0)
+      selected.value = res[0].areaId;
+  } catch (err) {
+    console.log(err)
+  }
+};
+
+const onSelected = async (id: string) => {
+  selected.value = id;
+
+  // const res = await getRtspUrl({
+  //   areaId: id,
+  //   startTime: dayjs().subtract(1, 'hours').format("YYYY-MM-DD HH:mm:ss"),
+  //   endTime: dayjs().format("YYYY-MM-DD HH:mm:ss")
+  // })
 };
 onMounted(() => {
-  // getData();
+  getData();
 });
 </script>
 <style lang="less" scoped>
@@ -82,7 +139,7 @@ onMounted(() => {
 .video {
   margin-top: 10px;
   width: 300px;
-  height: 245px;
+  height: 225px;
 
   img {
     width: 100%;

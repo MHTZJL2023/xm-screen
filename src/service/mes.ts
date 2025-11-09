@@ -9,7 +9,8 @@ const API = {
   toPutIntoAndOutPlanRecord: '/api1/mes/toPutIntoAndOutPlanRecord',
   toOnlineAndOutlineCarsRecord: '/api1/mes/toOnlineAndOutlineCarsRecord',
   cxInfo: '/api1/mes/MesManager/getCxInfo',
-
+  getPutIntoAndOutCountToday: '/api1/mes/MesManager/getPutIntoAndOutCountToday',
+  getProductionWorkInProcessWarnRecord: '/api1/mes/MesManager/getProductionWorkInProcessWarnRecord'
 };
 
 // 统计各产线当日实际上线、下线扫描车辆台数
@@ -45,7 +46,7 @@ export const getProductionWarnCarsRate = async (params: { cxname: string }) => {
 };
 
 // 产线在制品生产异常记录
-export const getCarInfo = async (params: { cxname: string }) => {
+export const getCarInfo = async (params: { scxid: string }) => {
   return request.get({
     url: API.carInfo,
     params
@@ -72,5 +73,21 @@ export const getToOnlineAndOutlineCarsRecord = async (params: { scxmc: string, d
 export const getCxInfo = async () => {
   return request.get({
     url: API.cxInfo,
+  });
+};
+
+// 获取投入产出计划数量
+export const getPutIntoAndOutCountToday = async (params: { cxname: string }) => {
+  return request.get({
+    url: API.getPutIntoAndOutCountToday,
+    params
+  });
+};
+
+// 获取产线在制品生产异常记录
+export const getProductionWorkInProcessWarnRecord = async (params: { cxname: string }) => {
+  return request.get({
+    url: API.getProductionWorkInProcessWarnRecord,
+    params
   });
 };

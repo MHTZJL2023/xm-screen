@@ -6,7 +6,7 @@
 <style lang="less" scoped>
 .ptcj {
   position: absolute;
-  left: calc(50vw - 400px);
+  left: 28%;
   top: calc(50vh - 200px);
   width: 700px;
   height: 500px;

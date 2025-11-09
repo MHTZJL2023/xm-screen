@@ -109,7 +109,7 @@ const onFinish = async () => {
 
   .content {
     position: absolute;
-    top: 290px;
+    top: 30%;
     left: 50%;
     transform: translateX(-50%);
     // background-image: url('@/assets/images/login/img_login_frame.png');

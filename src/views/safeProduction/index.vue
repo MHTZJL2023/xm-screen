@@ -1,14 +1,14 @@
 <template>
   <BasePageView>
     <BaseCard :title="cjyhpcl" class="cjyhpcl">
-      <template #extra>
+      <!-- <template #extra>
         <img class="detail" src="@/assets/images/cardTitle/ckxq.png" />
-      </template>
+      </template> -->
       <Charts :options="options1" height="240px" style="width: 100%;"></Charts>
     </BaseCard>
     <BaseCard :title="cjyhzgl">
       <Charts :options="options2" height="240px" style="width: 100%;"></Charts>
-    </BaseCard>å
+    </BaseCard>
   </BasePageView>
 </template>
 <script setup lang="ts">

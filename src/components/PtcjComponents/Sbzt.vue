@@ -16,7 +16,7 @@
       <div class="list">
         <div class="title">标签电量告警</div>
         <div class="content">
-          <div v-for="item in list" :key="item.code" class="item">{{ item.tag_id }}：电量不足请充电</div>
+          <div v-for="item in list" :key="item.code" class="item">{{ item.code }}：{{ item.content }}</div>
         </div>
       </div>
     </div>
@@ -111,7 +111,12 @@ const getData = async () => {
   //     tag_id: 604292
   //   },
   // ]
-  list.value = res1;
+  list.value = res1.map(item => {
+    return {
+      code: item.sn || "-",
+      content: item.tag_id == 65535 ? "充满" : item.tag_id == 65534 ? "正在充电" : item.tag_id,
+    }
+  });
 };
 onMounted(() => {
   getData();

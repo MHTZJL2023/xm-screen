@@ -85,8 +85,7 @@ const isOpen = ref<boolean>(true);
     .title {
       width: 694px;
       height: 69px;
-      background: url(@/assets/images/main/biaotikuang.png) no-repeat center /
-        cover;
+      background: url(@/assets/images/main/biaotikuang.png) no-repeat center / cover;
       background-size: 100% 100%;
     }
   }

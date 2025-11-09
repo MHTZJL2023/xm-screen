@@ -8,7 +8,8 @@ const API = {
   lowCardPowerInfo: '/api7/person/realPosition/getLowCardPowerInfo', // 获取低电量卡的信息
   countPersonStatus: '/api7/person/realPosition/countPersonStatus', // 人员信息（统计在岗、离岗人数）
   countDeviceStatusNum: '/api7/person/realPosition/countDeviceStatusNum', // 设备状态统计
-  getLowCardPowerInfo: '/api7/person/realPosition/getLowCardPowerInfo' // 获取低电量卡的信息
+  getLowCardPowerInfo: '/api7/person/realPosition/getLowCardPowerInfo', // 获取低电量卡的信息
+  getRtspUrl: '/person/realPosition/getRtspUrl' // 获取实时视频流地址
 };
 
 // 获取人员信息数据
@@ -58,5 +59,13 @@ export const countPersonStatus = async () => {
 export const countDeviceStatusNum = async () => {
   return request.post({
     url: API.countDeviceStatusNum,
+  });
+};
+
+// 获取实时视频流地址
+export const getRtspUrl = async (data: any) => {
+  return request.post({
+    url: API.getRtspUrl,
+    data,
   });
 };

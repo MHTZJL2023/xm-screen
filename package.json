@@ -21,6 +21,7 @@
     "axios": "^1.7.7",
     "dayjs": "^1.11.13",
     "echarts": "^6.0.0",
+    "flv.js": "^1.6.2",
     "highcharts": "^12.3.0",
     "lodash-es": "^4.17.21",
     "nprogress": "^0.2.0",

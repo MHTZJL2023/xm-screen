@@ -38,8 +38,8 @@ class Request {
     this.instance.interceptors.response.use(
       res => {
         console.log('xxx', res);
-        if (res.data.success !== false) {
-          return res.data.data ? res.data.data : res.data;
+        if (res.data.message === '成功') {
+          return res.data.date ? res.data.date : res.data || res;
         }
         message.error(res.data.msg || res.data.error_description || '请求失败');
         throw res.data;

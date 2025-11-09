@@ -35,7 +35,8 @@ import cxgpwtgdbb from '@/assets/images/cardTitle/cxgpwtgdbb.png'
 import cxqx from '@/assets/images/cardTitle/cxqx.png'
 import cxrdpu from '@/assets/images/cardTitle/cxrdpu.png'
 import qxlyfx from '@/assets/images/cardTitle/qxlyfx.png'
-import { getCxDpuForWeek, getDefectCount, getProductionWorkInProcessWarnRecord } from "@/service/qms";
+import { getProductionWorkInProcessWarnRecord } from "@/service/mes";
+import { getCxDpuForWeek, getDefectCount } from "@/service/qms";
 
 import { Options1, Options2 } from "./options";
 
@@ -70,19 +71,19 @@ const columns = [
 
 const getData1 = async () => {
   try {
-    // const res = await getCxDpuForWeek({cxname:''});
-    const res = [
-      {
-        checkdate: "2025-01-03",
-        defectCount: 1,
-        mesname: "焊装A线骨架拼装区（后段）"
-      },
-      {
-        checkdate: "2025-01-03",
-        defectCount: 1,
-        mesname: "涂装A线生产线后段"
-      }
-    ]
+    const res = await getDefectCount({ cxname: '总装A线生产线' });
+    // const res = [
+    //   {
+    //     checkdate: "2025-01-03",
+    //     defectCount: 1,
+    //     mesname: "焊装A线骨架拼装区（后段）"
+    //   },
+    //   {
+    //     checkdate: "2025-01-03",
+    //     defectCount: 1,
+    //     mesname: "涂装A线生产线后段"
+    //   }
+    // ]
     options1.value.series[0].data = res.map(item => [item.mesname, item.defectCount]);
   } catch (error) {
     console.log(error);
@@ -90,7 +91,7 @@ const getData1 = async () => {
 };
 const getData2 = async () => {
   try {
-    // const res = await getCxDpuForWeek({name:''});
+    // const res = await getCxDpuForWeek({ name: '总装下线' });
     const res = [
       {
         defectCount: 1,
@@ -109,8 +110,9 @@ const getData2 = async () => {
 
 const getData3 = async () => {
   try {
-    // const res = await getProductionWorkInProcessWarnRecord({cxname:''})
-    const res = [{ abnormalType: "物料短缺问题", clch: "R5U00679", docCreateTime: "2025-03-06", docStatus: "待审", docSubject: "厦门  前档玻璃  问题", fdEmergencyLevel: "紧急", fdFactory: "6100", fdLastModifiedTime: "2024-12-25 14:32:00", fdNumber: "HZ202412250009", fdProblemDesc: "前档玻璃 缺料，请落实具体到货时间", fdTechRequire: "前档玻璃  问题", gwmc: "修整工位", jxsj: "2025-03-06", scxmc: "总装商用车专线生产线", submitDepart: "总装公交产线", ztbgsj: "2025-03-06 09:02:00" },]
+    const res = await getProductionWorkInProcessWarnRecord({ cxname: '总装A线生产线' })
+
+    // const res = [{ abnormalType: "物料短缺问题", clch: "R5U00679", docCreateTime: "2025-03-06", docStatus: "待审", docSubject: "厦门  前档玻璃  问题", fdEmergencyLevel: "紧急", fdFactory: "6100", fdLastModifiedTime: "2024-12-25 14:32:00", fdNumber: "HZ202412250009", fdProblemDesc: "前档玻璃 缺料，请落实具体到货时间", fdTechRequire: "前档玻璃  问题", gwmc: "修整工位", jxsj: "2025-03-06", scxmc: "总装商用车专线生产线", submitDepart: "总装公交产线", ztbgsj: "2025-03-06 09:02:00" },]
     data.value = res.map((item, index) => {
       return {
         ...item,
@@ -124,30 +126,31 @@ const getData3 = async () => {
 
 const getData4 = async () => {
   try {
-    // const res = await getCxProblemFrequencyForYesterday({ cxname: '352'})
-    const res = [
-      {
-        checkdate: "2025-01-02",
-        firstdefectname: "焊装综合（焊装）",
-        mesname: "焊装A线骨架拼装区(前段)",
-        problemCount: 1,
-        seconddefectname: "XHZZH270"
-      },
-      {
-        checkdate: "2025-01-02",
-        firstdefectname: "封板质量（焊装）",
-        mesname: "焊装B线骨架拼装区（前段）",
-        problemCount: 1,
-        seconddefectname: "XHZFB080"
-      },
-      {
-        checkdate: "2025-01-02",
-        firstdefectname: "玻璃钢缺陷",
-        mesname: "涂装A线生产线后段",
-        problemCount: 1,
-        seconddefectname: "TZBLG0070"
-      }
-    ]
+    const res = await getCxProblemFrequencyForYesterday({ cxname: '总装A线生产线' })
+
+    // const res = [
+    //   {
+    //     checkdate: "2025-01-02",
+    //     firstdefectname: "焊装综合（焊装）",
+    //     mesname: "焊装A线骨架拼装区(前段)",
+    //     problemCount: 1,
+    //     seconddefectname: "XHZZH270"
+    //   },
+    //   {
+    //     checkdate: "2025-01-02",
+    //     firstdefectname: "封板质量（焊装）",
+    //     mesname: "焊装B线骨架拼装区（前段）",
+    //     problemCount: 1,
+    //     seconddefectname: "XHZFB080"
+    //   },
+    //   {
+    //     checkdate: "2025-01-02",
+    //     firstdefectname: "玻璃钢缺陷",
+    //     mesname: "涂装A线生产线后段",
+    //     problemCount: 1,
+    //     seconddefectname: "TZBLG0070"
+    //   }
+    // ]
     problemList.value = res.map((item) => item.mesname)
   }
   catch (err) {
