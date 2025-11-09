@@ -89,7 +89,7 @@ watch(
       height: 100%;
 
       .img {
-        background-image: url("@/assets/images/video/img_no_picture.svg");
+        // background-image: url("@/assets/images/video/img_no_picture.svg");
         background-size: 100% 100%;
         width: 38%;
         height: 46%;
