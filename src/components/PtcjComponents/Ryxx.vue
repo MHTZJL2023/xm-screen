@@ -25,7 +25,7 @@
 import BaseCard from '@/components/BaseCard/index.vue';
 
 import { onMounted, ref } from 'vue';
-import { countPersonStatus } from '@/service/qms';
+import { countPersonStatus } from '@/service/person';
 
 const personInfo = ref<any>({});
 
