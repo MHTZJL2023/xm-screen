@@ -1,22 +1,40 @@
 <template>
   <BasePageView>
-    <div style="display: flex;">
+    <div style="display: flex">
       <BaseCard :title="qxlyfx" class="card">
-        <BaseHighCharts ref="charts" :options="options1" style="height: 240px;"></BaseHighCharts>
+        <BaseHighCharts
+          ref="charts"
+          :options="options1"
+          style="height: 240px"></BaseHighCharts>
       </BaseCard>
-      <BaseLongCard :title1="cxrdpu" :title2="cxqx" :title3="cxgpwtgdbb" class="card_long">
+      <BaseLongCard
+        :title1="cxrdpu"
+        :title2="cxqx"
+        :title3="cxgpwtgdbb"
+        class="card_long">
         <template #part1>
-          <Charts :options="options2" height="240px" style="width: 100%;"></Charts>
+          <Charts
+            :options="options2"
+            height="240px"
+            style="width: 100%"></Charts>
         </template>
         <template #part2>
-          <a-table class="my-table" size="small" :columns="columns" :data-source="data" :pagination="false"
-            :scroll="{ y: '210px' }" style="height: 240px;"></a-table>
+          <a-table
+            class="my-table"
+            size="small"
+            :columns="columns"
+            :data-source="data"
+            :pagination="false"
+            :scroll="{ y: '210px' }"
+            style="height: 240px"></a-table>
         </template>
         <template #part3>
           <div class="problemList">
             <div class="title">问题点</div>
             <div class="list">
-              <div class="listItem" v-for="item in problemList" :key="item">{{ item }}</div>
+              <div class="listItem" v-for="item in problemList" :key="item">
+                {{ item }}
+              </div>
             </div>
           </div>
         </template>
@@ -25,35 +43,35 @@
   </BasePageView>
 </template>
 <script setup lang="ts">
-import BaseCard from "@/components/BaseCard/index.vue";
-import BaseHighCharts from "@/components/BaseHighCharts/index.vue";
-import BaseLongCard from '@/components/BaseLongCard/index.vue'
-import Charts from "@/components/Charts/Charts.vue";
+import BaseCard from '@/components/BaseCard/index.vue';
+import BaseHighCharts from '@/components/BaseHighCharts/index.vue';
+import BaseLongCard from '@/components/BaseLongCard/index.vue';
+import Charts from '@/components/Charts/Charts.vue';
 
-import { nextTick, onMounted, ref } from 'vue'
-import cxgpwtgdbb from '@/assets/images/cardTitle/cxgpwtgdbb.png'
-import cxqx from '@/assets/images/cardTitle/cxqx.png'
-import cxrdpu from '@/assets/images/cardTitle/cxrdpu.png'
-import qxlyfx from '@/assets/images/cardTitle/qxlyfx.png'
-import { getProductionWorkInProcessWarnRecord } from "@/service/mes";
-import { getCxDpuForWeek, getDefectCount } from "@/service/qms";
+import { nextTick, onMounted, ref } from 'vue';
+import cxgpwtgdbb from '@/assets/images/cardTitle/cxgpwtgdbb.png';
+import cxqx from '@/assets/images/cardTitle/cxqx.png';
+import cxrdpu from '@/assets/images/cardTitle/cxrdpu.png';
+import qxlyfx from '@/assets/images/cardTitle/qxlyfx.png';
+import { getProductionWorkInProcessWarnRecord } from '@/service/mes';
+import { getCxDpuForWeek, getDefectCount } from '@/service/qms';
 
-import { Options1, Options2 } from "./options";
+import { Options1, Options2 } from './options';
 
 const options1 = ref(Options1);
 const options2 = ref(Options2);
 
-const detailsOpen = ref(false)
-const charts = ref(null)
-const data = ref([])
-const problemList = ref([])
+const detailsOpen = ref(false);
+const charts = ref(null);
+const data = ref([]);
+const problemList = ref([]);
 const columns = [
   {
     title: '序号',
     dataIndex: 'index',
     key: 'index',
     align: 'center',
-    width: 80
+    width: 80,
   },
   {
     title: '类型',
@@ -67,7 +85,7 @@ const columns = [
     key: 'fdProblemDesc',
     align: 'center',
   },
-]
+];
 
 const getData1 = async () => {
   try {
@@ -84,49 +102,56 @@ const getData1 = async () => {
     //     mesname: "涂装A线生产线后段"
     //   }
     // ]
-    options1.value.series[0].data = res.map(item => [item.mesname, item.defectCount]);
+    options1.value.series[0].data = res.map(item => [
+      item.mesname,
+      item.defectCount,
+    ]);
   } catch (error) {
     console.log(error);
   }
 };
 const getData2 = async () => {
   try {
-    // const res = await getCxDpuForWeek({ name: '总装下线' });
-    const res = [
-      {
-        defectCount: 1,
-        passCount: 1,
-        processDpu: 1,
-        thedate: "2024-12-30"
-      }
-    ]
-    const x = res.map(item => item.thedate)
-    options2.value.xAxis.data = x
-    options2.value.series[0].data = res.map(item => item.processDpu)
+    const res = await getCxDpuForWeek({ name: '总装A线生产线' });
+    // const res = [
+    //   {
+    //     defectCount: 1,
+    //     passCount: 1,
+    //     processDpu: 1,
+    //     thedate: "2024-12-30"
+    //   }
+    // ]
+    const x = res.map(item => item.thedate);
+    options2.value.xAxis.data = x;
+    options2.value.series[0].data = res.map(item => item.processDpu);
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
-}
+};
 
 const getData3 = async () => {
   try {
-    const res = await getProductionWorkInProcessWarnRecord({ cxname: '总装A线生产线' })
+    const res = await getProductionWorkInProcessWarnRecord({
+      cxname: '总装A线生产线',
+    });
 
     // const res = [{ abnormalType: "物料短缺问题", clch: "R5U00679", docCreateTime: "2025-03-06", docStatus: "待审", docSubject: "厦门  前档玻璃  问题", fdEmergencyLevel: "紧急", fdFactory: "6100", fdLastModifiedTime: "2024-12-25 14:32:00", fdNumber: "HZ202412250009", fdProblemDesc: "前档玻璃 缺料，请落实具体到货时间", fdTechRequire: "前档玻璃  问题", gwmc: "修整工位", jxsj: "2025-03-06", scxmc: "总装商用车专线生产线", submitDepart: "总装公交产线", ztbgsj: "2025-03-06 09:02:00" },]
     data.value = res.map((item, index) => {
       return {
         ...item,
-        index: index + 1
-      }
-    })
+        index: index + 1,
+      };
+    });
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
-}
+};
 
 const getData4 = async () => {
   try {
-    const res = await getCxProblemFrequencyForYesterday({ cxname: '总装A线生产线' })
+    const res = await getCxProblemFrequencyForYesterday({
+      cxname: '总装A线生产线',
+    });
 
     // const res = [
     //   {
@@ -151,20 +176,19 @@ const getData4 = async () => {
     //     seconddefectname: "TZBLG0070"
     //   }
     // ]
-    problemList.value = res.map((item) => item.mesname)
+    problemList.value = res.map(item => item.mesname);
+  } catch (err) {
+    console.log(err);
   }
-  catch (err) {
-    console.log(err)
-  }
-}
+};
 
 onMounted(() => {
   nextTick(() => {
-    getData1()
-  })
-  getData2()
-  getData3()
-  getData4()
+    getData1();
+  });
+  getData2();
+  getData3();
+  getData4();
 });
 </script>
 <style lang="less" scoped>

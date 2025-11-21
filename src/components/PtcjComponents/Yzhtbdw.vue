@@ -3,22 +3,31 @@
     <div class="list">
       <div class="listItem" v-for="item in list" :key="item">
         <span>{{ item.gw }}</span>
-        <span style="margin-left: 30px;">车辆编号：{{ item.code }}</span>
-        <span style="margin-left: 30px;">涂补点位数量：{{ item.content }}</span>
-        <a-button class="my-button-custom" style="margin-left: auto;" @click="onDetails">详情</a-button>
+        <span style="margin-left: 30px">车辆编号：{{ item.code }}</span>
+        <span style="margin-left: 30px">涂补点位数量：{{ item.content }}</span>
+        <a-button
+          class="my-button-custom"
+          style="margin-left: auto"
+          @click="onDetails">
+          详情
+        </a-button>
       </div>
     </div>
   </BaseCard>
-  <a-modal class="my-modal" title="原子灰点位统计" :footer="null" v-model:visible="visible" width="60vw" centered>
-    <img src="@/assets/images/ptcj/yzhdwtj.png" alt="" style="width: 100%;">
+  <a-modal
+    class="my-modal"
+    title="原子灰点位统计"
+    :footer="null"
+    v-model:visible="visible"
+    width="60vw"
+    centered>
+    <img src="@/assets/images/ptcj/yzhdwtj.png" alt="" style="width: 100%" />
   </a-modal>
 </template>
 <script setup lang="ts">
-import BaseCard from "@/components/BaseCard/index.vue";
+import BaseCard from '@/components/BaseCard/index.vue';
 
-import { onMounted, ref } from "vue";
-
-
+import { onMounted, ref } from 'vue';
 
 const visible = ref(false);
 const onDetails = () => {
@@ -27,31 +36,31 @@ const onDetails = () => {
 
 const list = ref([
   {
-    gw: "工位1",
-    content: "1",
-    code: "AAA213"
+    gw: '工位1',
+    content: '1',
+    code: 'AAA213',
   },
   {
-    gw: "工位1",
-    content: "2",
-    code: "AAA233"
+    gw: '工位1',
+    content: '2',
+    code: 'AAA233',
   },
   {
-    gw: "工位1",
-    content: "3",
-    code: "AAA213"
+    gw: '工位1',
+    content: '3',
+    code: 'AAA213',
   },
   {
-    gw: "工位1",
-    content: "4",
-    code: "AAA233"
+    gw: '工位1',
+    content: '4',
+    code: 'AAA233',
   },
-])
+]);
 
 const getData = async () => {
   try {
-    const res = await getCjyhpcl();
-    list.value = res;
+    // const res = await getCjyhpcl();
+    // list.value = res;
   } catch (error) {
     console.log(error);
   }
@@ -68,7 +77,6 @@ onMounted(() => {
   width: 520px;
   height: 400px;
 }
-
 
 .list {
   height: calc(400px - 63px);

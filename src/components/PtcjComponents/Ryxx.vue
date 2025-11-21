@@ -1,22 +1,31 @@
 <template>
   <BaseCard title="人员信息" :title-type="true" class="card">
-    <div class="static">在岗人数：<span class="value">{{ personInfo.online }}人</span></div>
-    <div class="static">离岗人数：<span class="value">{{ personInfo.outline }}人</span></div>
+    <div class="static">
+      在岗人数：
+      <span class="value">{{ personInfo.online }}人</span>
+    </div>
+    <div class="static">
+      离岗人数：
+      <span class="value">{{ personInfo.outline }}人</span>
+    </div>
     <div class="content">
       <!-- <div class="chart">
         <Charts :options="options" height="200px" style="width: 100%;"></Charts>
       </div> -->
       <div class="btns">
         <!-- <a-button class="my-button-custom" style="margin-top: 50px;">实时定位</a-button> -->
-        <a-button class="my-button-custom" style="width: 30%;margin-top: 10px;">轨迹回放</a-button>
+        <a-button class="my-button-custom" style="width: 30%; margin-top: 10px">
+          轨迹回放
+        </a-button>
       </div>
     </div>
   </BaseCard>
 </template>
 <script setup lang="ts">
-import BaseCard from "@/components/BaseCard/index.vue";
+import BaseCard from '@/components/BaseCard/index.vue';
 
-import { onMounted, ref } from "vue";
+import { onMounted, ref } from 'vue';
+import { countPersonStatus } from '@/service/qms';
 
 const personInfo = ref<any>({});
 
@@ -33,7 +42,7 @@ const options = ref({
   legend: {
     show: false,
     orient: 'vertical',
-    left: 'left'
+    left: 'left',
   },
   series: [
     {
@@ -47,25 +56,29 @@ const options = ref({
       label: {
         color: '#fff',
         fontSize: '14px',
-        formatter: (params) => {
-          const total = options.value.series[0].data.reduce((sum, item) => sum + item.value, 0);
+        formatter: params => {
+          const total = options.value.series[0].data.reduce(
+            (sum, item) => sum + item.value,
+            0,
+          );
           const percentage = ((params.value / total) * 100).toFixed(1);
           return `${percentage}%\n${params.name}`;
-        }
-      }
-    }
-  ]
-})
+        },
+      },
+    },
+  ],
+});
 
 const getData = async () => {
-  // const res = await countPersonStatus();
-  const res = {
-    code: 0,
-    message: "成功",
-    online: 2,
-    outline: 3,
-    total: 5
-  }
+  const res = await countPersonStatus();
+
+  // const res = {
+  //   code: 0,
+  //   message: "成功",
+  //   online: 2,
+  //   outline: 3,
+  //   total: 5
+  // }
 
   personInfo.value = res;
   options.value.series[0].data = [
@@ -85,7 +98,6 @@ onMounted(() => {
   width: 420px;
   height: 250px;
 }
-
 
 .static {
   display: flex;

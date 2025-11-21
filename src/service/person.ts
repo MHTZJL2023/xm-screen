@@ -9,7 +9,7 @@ const API = {
   countPersonStatus: '/api7/person/realPosition/countPersonStatus', // 人员信息（统计在岗、离岗人数）
   countDeviceStatusNum: '/api7/person/realPosition/countDeviceStatusNum', // 设备状态统计
   getLowCardPowerInfo: '/api7/person/realPosition/getLowCardPowerInfo', // 获取低电量卡的信息
-  getRtspUrl: '/person/realPosition/getRtspUrl' // 获取实时视频流地址
+  getRtspUrl: '/api7/person/realPosition/getRtspUrl' // 获取实时视频流地址
 };
 
 // 获取人员信息数据
