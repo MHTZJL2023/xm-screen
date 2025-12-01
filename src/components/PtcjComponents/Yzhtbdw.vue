@@ -21,15 +21,23 @@
     v-model:visible="visible"
     width="60vw"
     centered>
-    <img src="@/assets/images/ptcj/yzhdwtj.png" alt="" style="width: 100%" />
+    <img
+      @click="visibleModal = true"
+      src="@/assets/images/ptcj/yzhdwtj.png"
+      alt=""
+      style="width: 100%" />
   </a-modal>
+
+  <productionExecutionModal :visible="visibleModal" />
 </template>
 <script setup lang="ts">
+import productionExecutionModal from '../ProductionExecution/index.vue';
 import BaseCard from '@/components/BaseCard/index.vue';
 
 import { onMounted, ref } from 'vue';
 
 const visible = ref(false);
+const visibleModal = ref(false);
 const onDetails = () => {
   visible.value = true;
 };

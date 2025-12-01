@@ -4,19 +4,15 @@
       <div class="listItem" v-for="item in list" :key="item">
         <div>
           <div>
-            <span>
-              姓名：{{
-                item.personInfo ? item.personInfo[0]?.ryName || '-' : '-'
-              }}
-            </span>
+            <span>姓名：{{ item.personName || '-' }}</span>
             <span style="margin-left: 20px">
-              离开时间：{{ item.fdLastModifiedTime || '-' }}
+              离开时间：{{ item.endtime || '-' }}
             </span>
           </div>
           <div>
-            <span>告警时间：{{ item.docCreateTime || '-' }}</span>
+            <span>告警时间：{{ item.starttime || '-' }}</span>
             <span style="margin-left: 20px">
-              关联车辆：{{ item.clch || '-' }}
+              关联车辆：{{ item.cardId || '-' }}
             </span>
           </div>
         </div>
@@ -48,7 +44,7 @@ import BaseCard from '@/components/BaseCard/index.vue';
 
 import { onMounted, ref } from 'vue';
 
-import { getWarnInfoByClch } from '../../service/ekp';
+import { getCardAlarmForToday } from '../../service/person';
 
 const visible = ref(false);
 
@@ -57,58 +53,24 @@ const onView = () => {
 };
 const list = ref([
   {
-    abnormalType: '物料短缺问题',
-    clch: 'R5U00679',
-    docCreateTime: '2025-03-06 14:30:06',
-    docStatus: '待审',
-    docSubject: '厦门  前档玻璃  问题',
-    fdEmergencyLevel: '紧急',
-    fdFactory: '6100',
-    fdLastModifiedTime: '2024-12-25 14:32:00',
-    fdNumber: 'HZ202412250009',
-    fdProblemDesc: '前档玻璃 缺料，请落实具体到货时间',
-    fdTechRequire: '前档玻璃  问题',
-    personInfo: [
-      {
-        ryName: '卢扬',
-        ryId: '2768',
-        rygh: '1000795',
-        ryDepart: '\\金龙客车\\其他体系\\离职人员\\黑名单',
-      },
-    ],
-    stationName: '乘客门工位',
-    stationNo: 'D401',
-    submitDepart: '总装公交产线',
+    cardId: 10001,
+    describe: '进入工位至离开工位时长超过5分钟',
+    endtime: '2025-06-04 15:09:45',
+    personName: '焦尧22',
+    starttime: '2025-06-04 14:30:40',
   },
 ]);
 
 const getData = async () => {
   try {
-    const res = await getWarnInfoByClch({ clch: 'R5U00679' });
+    const res = await getCardAlarmForToday();
     // const res = [
     //   {
-    //     abnormalType: '物料短缺问题',
-    //     clch: 'R5U00679',
-    //     docCreateTime: '2025-03-06 14:30:06',
-    //     docStatus: '待审',
-    //     docSubject: '厦门  前档玻璃  问题',
-    //     fdEmergencyLevel: '紧急',
-    //     fdFactory: '6100',
-    //     fdLastModifiedTime: '2024-12-25 14:32:00',
-    //     fdNumber: 'HZ202412250009',
-    //     fdProblemDesc: '前档玻璃 缺料，请落实具体到货时间',
-    //     fdTechRequire: '前档玻璃  问题',
-    //     personInfo: [
-    //       {
-    //         ryName: '卢扬',
-    //         ryId: '2768',
-    //         rygh: '1000795',
-    //         ryDepart: '\\金龙客车\\其他体系\\离职人员\\黑名单',
-    //       },
-    //     ],
-    //     stationName: '乘客门工位',
-    //     stationNo: 'D401',
-    //     submitDepart: '总装公交产线',
+    //     cardId: 10001,
+    //     describe: '进入工位至离开工位时长超过5分钟',
+    //     endtime: '2025-06-04 15:09:45',
+    //     personName: '焦尧22',
+    //     starttime: '2025-06-04 14:30:40',
     //   },
     // ];
     list.value = res;

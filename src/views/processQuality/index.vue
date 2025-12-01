@@ -1,14 +1,14 @@
 <template>
   <BasePageView>
     <div style="display: flex">
-      <BaseCard :title="qxlyfx" class="card">
+      <!-- <BaseCard :title="qxlyfx" class="card">
         <BaseHighCharts
           ref="charts"
           :options="options1"
           style="height: 240px"></BaseHighCharts>
-      </BaseCard>
+      </BaseCard> -->
       <BaseLongCard
-        :title1="cxrdpu"
+        title1="产线近7日DPU"
         :title2="cxqx"
         :title3="cxgpwtgdbb"
         class="card_long">
@@ -43,8 +43,6 @@
   </BasePageView>
 </template>
 <script setup lang="ts">
-import BaseCard from '@/components/BaseCard/index.vue';
-import BaseHighCharts from '@/components/BaseHighCharts/index.vue';
 import BaseLongCard from '@/components/BaseLongCard/index.vue';
 import Charts from '@/components/Charts/Charts.vue';
 

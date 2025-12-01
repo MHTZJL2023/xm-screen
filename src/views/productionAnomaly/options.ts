@@ -93,56 +93,99 @@ export const Options1 = {
     },
   ],
 } as any;
-export const Options2 = {
-  colors: ['#469485', '#3b7fa2'],
-  chart: {
-    type: 'pie',
-    options3d: {
-      enabled: true,
-      alpha: 45,
-      beta: 0
-    },
-    backgroundColor: 'transparent' // 添加这一行使背景透明
-  },
-  title: {
-    text: ''
-  },
-  accessibility: {
-    point: {
-      valueSuffix: '%'
-    }
-  },
-  tooltip: {
-    pointFormat: '{point.percentage:.1f}%</b>'
-  },
-  plotOptions: {
-    pie: {
-      allowPointSelect: true,
-      cursor: 'pointer',
-      depth: 25,
-      dataLabels: {
-        enabled: true,
-        format: '{point.percentage:.1f}%</br>{point.name}',
-        style: {
-          color: '#FFFFFF', // 设置字体颜色为白色
-          textOutline: 'none', // 可选：去除文字轮廓
-          fontSize: '18px'
-        }
+export const Options2 =
+  {
+    colors: ['#469485', '#3b7fa2'],
+    tooltip: {
+      trigger: 'axis',
+      backgroundColor: 'rgba(6,38,48,0.85)',
+      borderColor: 'rgba(0, 118, 144, 1)',
+      textStyle: {
+        color: 'rgba(205, 236, 250, 1)',
       },
     },
-    item: {
-      color: '#fff',
-    }
-  },
-  series: [{
-    type: 'pie',
-    name: '人数',
-    data: [
-      ['未达成率', 23],
-      ['达成率', 18],
+    legend: {
+      show: true,
+      itemStyle: {
+        borderType: 'inherit',
+        borderWidth: '1px',
+        color: 'inherit',
+      },
+      textStyle: {
+        fontSize: '14px',
+        color: '#ffffffff',
+      },
+      lineStyle: {
+        width: '2',
+      },
+    },
+    grid: {
+      top: '12%',
+      left: '8%',
+      right: '5%',
+      bottom: '28%',
+    },
+    xAxis: {
+      type: 'category',
+      axisLine: {
+        lineStyle: {
+          color: ['#ffffff'],
+        },
+      },
+      axisLabel: {
+        color: '#ffffff',
+        margin: 12,
+        maxInterval: 10,
+      },
+      data: [],
+    },
+    dataZoom: [
+      {
+        type: 'inside', // 支持内部鼠标滚动平移
+        xAxisIndex: [0, 1],
+        zoomOnMouseWheel: true, // 关闭滚轮缩放
+        moveOnMouseWheel: true, // 开启滚轮平移
+        moveOnMouseMove: true, // 鼠标移动能触发数据窗口平移
+      },
     ],
-  }],
-  credits: {
-    enabled: false // 添加这一行来隐藏highcharts.com标志
-  }
-} as any;
+    yAxis: {
+      name: '',
+      type: 'value',
+      axisLabel: {
+        color: '#ffffff',
+        formatter: value => {
+          return value.toFixed(1);
+        },
+      },
+      axisLine: {
+        show: true,
+        lineStyle: {
+          color: ['#ffffff'],
+        },
+      },
+      splitLine: {
+        show: true,
+        lineStyle: {
+          type: 'solid',
+          color: ['#ffffffa0'],
+          opacity: 0.1,
+        },
+      },
+    },
+    series: [
+      {
+        name: '频率',
+        data: [1, 4, 7, 5, 2, 3, 5],
+        type: 'bar',
+        barMaxWidth: 15,
+        color: 'rgba(24, 190, 231, 1)',
+        itemStyle: {
+          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            { offset: 1, color: '#469485' },
+            { offset: 0, color: '#3b7fa2' },
+          ]),
+        },
+      },
+    ],
+  } as any;
+

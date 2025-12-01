@@ -2,7 +2,9 @@
   <div class="card">
     <div class="part">
       <div class="title">
-        <img class="title_img" :src="title1" />
+        <div class="title_text">{{ title1 }}</div>
+        <!-- <img class="title_img" :src="title1" /> -->
+
         <div class="extra">
           <slot name="extra"></slot>
         </div>
@@ -10,7 +12,7 @@
       <slot name="part1"></slot>
     </div>
 
-    <div class="part" style="margin-bottom: 30px;">
+    <div class="part" style="margin-bottom: 30px">
       <div class="title">
         <img class="title_img" :src="title2" />
         <div class="extra">
@@ -32,14 +34,13 @@
   </div>
 </template>
 <script setup lang="ts">
-
 interface CardProps {
-  title1: string
-  title2: string
-  title3: string
-  type: number
+  title1: string;
+  title2: string;
+  title3: string;
+  type: number;
 }
-const props = defineProps<CardProps>()
+const props = defineProps<CardProps>();
 </script>
 <style lang="less" scoped>
 .card {
@@ -50,10 +51,11 @@ const props = defineProps<CardProps>()
   padding: 10px 15px;
 
   .title {
-    width: 226px;
+    // width: 226px;
     height: 44px;
     background: url(@/assets/images/main/xiaobiaotibeijing.png);
-    background-size: 100% 100%;
+    background-size: 226px 100%;
+    background-repeat: no-repeat;
     display: flex;
     align-items: center;
 
@@ -61,7 +63,15 @@ const props = defineProps<CardProps>()
       display: flex;
       margin-left: 120px;
     }
-
+    .title_text {
+      // width: 800px;
+      margin-left: 50px;
+      font-size: 20px;
+      color: #fff;
+      font-weight: bold;
+      line-height: 44px;
+      text-shadow: 10px 10px 5px #6ba97580;
+    }
     .title_img {
       margin-left: 50px;
     }

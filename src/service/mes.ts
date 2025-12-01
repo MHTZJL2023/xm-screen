@@ -10,7 +10,10 @@ const API = {
   toOnlineAndOutlineCarsRecord: '/api1/mes/toOnlineAndOutlineCarsRecord',
   cxInfo: '/api1/mes/MesManager/getCxInfo',
   getPutIntoAndOutCountToday: '/api1/mes/MesManager/getPutIntoAndOutCountToday',
-  getProductionWorkInProcessWarnRecord: '/api1/mes/MesManager/getProductionWorkInProcessWarnRecord'
+  getProductionWorkInProcessWarnRecord: '/api1/mes/MesManager/getProductionWorkInProcessWarnRecord',
+  getActualOnlineAndOutlineCarsNumWeek: '/api1/mes/MesManager/getActualOnlineAndOutlineCarsNumWeek',
+  getPutIntoAndOutCountWeek: '/api1/mes/MesManager/getPutIntoAndOutCountWeek',
+  getAchievingRateWeek: '/api1/mes/MesManager/getAchievingRateWeek'
 };
 
 // 统计各产线当日实际上线、下线扫描车辆台数
@@ -88,6 +91,30 @@ export const getPutIntoAndOutCountToday = async (params: { cxname: string }) => 
 export const getProductionWorkInProcessWarnRecord = async (params: { cxname: string }) => {
   return request.get({
     url: API.getProductionWorkInProcessWarnRecord,
+    params
+  });
+};
+
+// 获取近7日实际出勤人数
+export const getActualOnlineAndOutlineCarsNumWeek = async (params: { cxname: string }) => {
+  return request.get({
+    url: API.getActualOnlineAndOutlineCarsNumWeek,
+    params
+  });
+};
+
+// 获取投入产出计划数量
+export const getPutIntoAndOutCountWeek = async (params: { cxname: string }) => {
+  return request.get({
+    url: API.getPutIntoAndOutCountWeek,
+    params
+  });
+};
+
+// 获取近7日实际出勤人数
+export const getAchievingRateWeek = async (params: { cxname: string }) => {
+  return request.get({
+    url: API.getAchievingRateWeek,
     params
   });
 };

@@ -1,6 +1,6 @@
 <template>
   <BasePageView>
-    <BaseCard :title="cjyhpcl" class="cjyhpcl">
+    <!-- <BaseCard :title="cjyhpcl" class="cjyhpcl">
       <div class="search">
         <a-input class="my-input" v-model:value="code" placeholder="输入车辆编号"></a-input>
         <a-button class="my-button-custom" @click="getCjyhpcl()">查询</a-button>
@@ -15,29 +15,30 @@
           <a-button class="my-button-custom" style="margin-left: auto;">监控</a-button>
         </div>
       </div>
-    </BaseCard>
-    <BaseCard :title="cxryctcb" style="margin-left: auto;">
-      <BaseHighCharts :options="options2" style="height: 240px;"></BaseHighCharts>
+    </BaseCard> -->
+    <BaseCard :title="cxryctcb" style="position: absolute; bottom: 20px">
+      <Charts :options="options2" style="height: 260px"></Charts>
     </BaseCard>
   </BasePageView>
 </template>
 <script setup lang="ts">
-import BaseCard from "@/components/BaseCard/index.vue";
-import BaseHighCharts from "@/components/BaseHighCharts/index.vue";
-import Charts from "@/components/Charts/Charts.vue";
+import BaseCard from '@/components/BaseCard/index.vue';
+import Charts from '@/components/Charts/Charts.vue';
 
-import { onMounted, ref } from "vue";
-import cjyhpcl from "@/assets/images/cardTitle/cjyhpcl.png";
-import cxryctcb from "@/assets/images/cardTitle/cxryctcb.png";
-import { getCarInfo } from "@/service/mes";
-import { getHiddenDangerAbarbeitungRate, getHiddenDangerInvestigationRate } from "@/service/saveeyes";
+import { onMounted, ref } from 'vue';
+import cxryctcb from '@/assets/images/cardTitle/cxryctcb.png';
+import { getCarInfo } from '@/service/mes';
+import {
+  getHiddenDangerAbarbeitungRate,
+  getProductionWarnCarsRate,
+} from '@/service/saveeyes';
 
-import { Options1, Options2 } from './options'
+import { Options1, Options2 } from './options';
 
 const options1 = ref({ ...Options1 });
 const options2 = ref({ ...Options2 });
-const code = ref('')
-const list = ref([])
+const code = ref('');
+const list = ref([]);
 const getCjyhpcl = async () => {
   try {
     const res = await getCarInfo({ scxid: '310' });
@@ -117,27 +118,30 @@ const getCjyhpcl = async () => {
     // ]
     list.value = res;
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
 };
 
 const getCjyhzgl = async () => {
   try {
-    const res = await getHiddenDangerAbarbeitungRate();
+    const res = await getProductionWarnCarsRate({ cxname: '总装A线生产线' });
 
     // const res = [
-    //   {
-    //     compname: "厦门金龙礼宾车有限公司",
-    //     orgname: "厦门金龙礼宾车有限公司",
-    //     rate: 0.3
-    //   }
-    // ]
-    const x = res.map(item => [item.orgname, item.rate]);
-    options2.value.series[0].data = x;
+    //   { lzsj: '2025-02-28', rate: 0.0, scxmc: '总装商用车专线生产线' },
+    //   { lzsj: '2025-03-01', rate: 0.0, scxmc: '总装商用车专线生产线' },
+    //   { lzsj: '2025-03-02', rate: 0.0, scxmc: '总装商用车专线生产线' },
+    //   { lzsj: '2025-03-03', rate: 0.0, scxmc: '总装商用车专线生产线' },
+    //   { lzsj: '2025-03-04', rate: 0.0, scxmc: '总装商用车专线生产线' },
+    //   { lzsj: '2025-03-05', rate: 1.0, scxmc: '总装商用车专线生产线' },
+    //   { lzsj: '2025-03-06', rate: 0.0, scxmc: '总装商用车专线生产线' },
+    // ];
+    const x = res.map(item => [item.lzsj, item.rate]);
+    options2.value.xAxis.data = x.map(item => item[0]);
+    options2.value.series[0].data = x.map(item => item[1]);
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
-}
+};
 
 onMounted(() => {
   getCjyhpcl();
@@ -157,7 +161,6 @@ onMounted(() => {
   gap: 10px;
   margin-top: 10px;
 }
-
 
 .list {
   height: calc(460px - 63px);
