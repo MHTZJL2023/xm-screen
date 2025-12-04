@@ -206,9 +206,13 @@
 
   .table-row {
     display: flex;
-    gap: 15px;
-    margin-bottom: 15px;
+    // gap: 15px;
+    // margin-bottom: 15px;
+    align-items: center;
+    height: 50px;
     flex-wrap: wrap;
+    // border: 1px solid rgba(255, 255, 255, 0.141);
+    // padding: 0 10px;
 
     &:last-child {
       margin-bottom: 0;
@@ -221,12 +225,20 @@
     align-items: center;
     gap: 10px;
     min-width: 200px;
+    // padding: 0 10px;
+    height: 100%;
     flex: 1;
+    border: 1px solid rgba(255, 255, 255, 0.141);
 
     .cell-label {
       color: rgba(255, 255, 255, 0.7);
       font-size: 13px;
       min-width: 80px;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      padding: 0 5px;
+      background-color: rgba(255, 255, 255, 0.141);
     }
 
     .cell-value {

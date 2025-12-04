@@ -28,7 +28,9 @@
       style="width: 100%" />
   </a-modal>
 
-  <productionExecutionModal :visible="visibleModal" />
+  <productionExecutionModal
+    :visible="visibleModal"
+    @cancel="visibleModal = false" />
 </template>
 <script setup lang="ts">
 import productionExecutionModal from '../ProductionExecution/index.vue';

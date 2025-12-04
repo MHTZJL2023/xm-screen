@@ -4,7 +4,7 @@
     title="金龙车间执行系统"
     :footer="null"
     v-model:open="props.visible"
-    @cancel="emits('colse')"
+    @cancel="emits('cancel')"
     width="1500px"
     centered>
     <div class="production-execution">
@@ -247,7 +247,7 @@
       </div>
     </div>
   </a-modal>
-  <DetailsInfo :visible="visibleInfo" />
+  <DetailsInfo :visible="visibleInfo" @cancel="visibleInfo = false" />
 </template>
 
 <script setup lang="ts">
@@ -279,6 +279,8 @@ const visibleInfo = ref(false);
 const onOrderClick = () => {
   visibleInfo.value = true;
 };
+
+const emits = defineEmits(['cancel']);
 </script>
 
 <style lang="less" scoped>
