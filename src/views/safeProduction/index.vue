@@ -51,7 +51,6 @@ const getCjyhpcl = async () => {
       ['未排查率', 1 - val],
       ['排查率', val],
     ];
-    console.log('options1', options1.value);
   } catch (err) {
     console.log(err);
   }
