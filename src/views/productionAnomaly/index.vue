@@ -28,10 +28,7 @@ import Charts from '@/components/Charts/Charts.vue';
 import { onMounted, ref } from 'vue';
 import cxryctcb from '@/assets/images/cardTitle/cxryctcb.png';
 import { getCarInfo } from '@/service/mes';
-import {
-  getHiddenDangerAbarbeitungRate,
-  getProductionWarnCarsRate,
-} from '@/service/saveeyes';
+import { getProductionWarnCarsRate } from '@/service/mes';
 
 import { Options1, Options2 } from './options';
 
@@ -42,6 +39,7 @@ const list = ref([]);
 const getCjyhpcl = async () => {
   try {
     const res = await getCarInfo({ scxid: '310' });
+
     // const res = [
     //   {
     //     aufnr: "R5A002380238",

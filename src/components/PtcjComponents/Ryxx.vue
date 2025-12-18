@@ -14,12 +14,28 @@
       </div> -->
       <div class="btns">
         <!-- <a-button class="my-button-custom" style="margin-top: 50px;">实时定位</a-button> -->
-        <a-button class="my-button-custom" style="width: 30%; margin-top: 10px">
+        <a-button
+          class="my-button-custom"
+          @click="visible = true"
+          style="width: 30%; margin-top: 10px">
           轨迹回放
         </a-button>
       </div>
     </div>
   </BaseCard>
+  <a-modal
+    class="my-modal"
+    title="轨迹回放"
+    :footer="null"
+    v-model:visible="visible"
+    @cancel="visible = false"
+    width="60vw"
+    centered>
+    <iframe
+      src="http://192.168.1.9:8000/history#/person/?token=jGwv0xDzYaSVX0cV5EZ0"
+      width="100%"
+      height="600px"></iframe>
+  </a-modal>
 </template>
 <script setup lang="ts">
 import BaseCard from '@/components/BaseCard/index.vue';
@@ -28,7 +44,7 @@ import { onMounted, ref } from 'vue';
 import { countPersonStatus } from '@/service/person';
 
 const personInfo = ref<any>({});
-
+const visible = ref(false);
 const options = ref({
   color: ['#469485', '#3b7fa2'],
   tooltip: {
