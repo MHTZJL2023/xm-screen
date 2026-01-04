@@ -1,53 +1,129 @@
 <template>
-  <a-modal class="my-modal" title="" :footer="null" v-model:open="props.visible" @cancel="emits('colse')" width="1000px"
+  <a-modal
+    class="my-modal"
+    title=""
+    :footer="null"
+    v-model:open="props.visible"
+    @cancel="emits('colse')"
+    width="1000px"
     centered>
     <div class="content">
       <div class="search">
-        <a-input-search class="my-input" placeholder="请输入车辆编号" v-model:value="code" @search="onSearch"
-          style="width: 250px;" />
+        <a-input-search
+          class="my-input"
+          placeholder="请输入车辆编号"
+          v-model:value="code"
+          @search="onSearch"
+          style="width: 250px" />
         <div class="button-container">
-          <a-button class="my-button-custom" style="width: 180px;height:40px;margin-top: 20px;">确认编号</a-button>
-          <a-button class="my-button-custom" style="width: 180px;height:40px;margin-top: 20px;"
-            @click="setVisible = true">阈值设置</a-button>
-          <a-button class="my-button-custom" style="width: 180px;height:40px;margin-top: 20px;"
-            @click="photoVisisble = true">拍摄</a-button>
+          <a-button
+            class="my-button-custom"
+            style="width: 180px; height: 40px; margin-top: 20px"
+            @click="yuzhiVisisble = true">
+            上传图纸
+          </a-button>
+          <a-button
+            class="my-button-custom"
+            style="width: 180px; height: 40px; margin-top: 20px"
+            @click="setVisible = true">
+            阈值设置
+          </a-button>
+          <a-button
+            class="my-button-custom"
+            style="width: 180px; height: 40px; margin-top: 20px"
+            @click="photoVisisble = true">
+            准备拍摄
+          </a-button>
         </div>
       </div>
       <div class="photo">
         <p>设计图纸</p>
         <div class="image">
-          <img src="@/assets/images/zjcj/image.png" alt="">
+          <img src="@/assets/images/zjcj/image.png" alt="" />
         </div>
       </div>
     </div>
   </a-modal>
 
-  <a-modal class="my-modal" title="阈值设置" :footer="null" v-model:visible="setVisible" width="500px" centered>
-    <a-table class="table" size="small" :columns="columns" :data-source="data" :pagination="false">
+  <a-modal
+    class="my-modal"
+    title="阈值设置"
+    :footer="null"
+    v-model:visible="setVisible"
+    width="500px"
+    centered>
+    <a-table
+      class="table"
+      size="small"
+      :columns="columns"
+      :data-source="data"
+      :pagination="false">
       <template #valueSet="{ record }">
-        <a-input class="my-input" v-model:value="record.valueSet" style="width: 100px;" :scroll="{ y: 300 }" />
+        <a-input
+          class="my-input"
+          v-model:value="record.valueSet"
+          style="width: 100px"
+          :scroll="{ y: 300 }" />
       </template>
     </a-table>
-    <div class="footer" style="margin-top: 0px;">
-      <a-button style="width: 100px;" @click="setVisible = false">取消</a-button>
-      <a-button class="my-button-custom" style="width: 100px;margin-left: 20px;">保存</a-button>
+    <div class="footer" style="margin-top: 0px">
+      <a-button style="width: 100px" @click="setVisible = false">取消</a-button>
+      <a-button
+        class="my-button-custom"
+        style="width: 100px; margin-left: 20px">
+        保存
+      </a-button>
     </div>
   </a-modal>
 
-  <a-modal class="my-modal" title="拍摄结果" :footer="null" v-model:visible="photoVisisble" width="1000px" centered>
+  <a-modal
+    class="my-modal"
+    title="拍摄结果"
+    :footer="null"
+    v-model:visible="photoVisisble"
+    width="1000px"
+    centered>
     <a-row :gutter="[12, 16]">
-      <a-col v-for="(item, index) in photos" :span="index % 2 ? 15 : 9" :key="item.name">
-        <img :src="imgs[index]" alt="" style="width: 100%;height: 200px;">
+      <a-col
+        v-for="(item, index) in photos"
+        :span="index % 2 ? 15 : 9"
+        :key="item.name">
+        <img :src="imgs[index]" alt="" style="width: 100%; height: 200px" />
         <div class="text">{{ item.name }}</div>
       </a-col>
     </a-row>
     <div class="footer">
-      <a-button style="width: 100px;" @click="photoVisisble = false">确认</a-button>
-      <a-button class="my-button-custom" style="width: 100px;margin-left: 20px;">重拍</a-button>
+      <a-button
+        class="my-button-custom"
+        style="width: 100px"
+        @click="photoVisisble = false">
+        启动
+      </a-button>
+      <a-button
+        class="my-button-custom"
+        style="width: 100px; margin-left: 20px">
+        终止
+      </a-button>
+      <a-button
+        class="my-button-custom"
+        style="width: 100px; margin-left: 20px">
+        复位
+      </a-button>
+      <a-button
+        class="my-button-custom"
+        style="width: 100px; margin-left: 20px"
+        @click="detailsOpen = true">
+        检测
+      </a-button>
     </div>
   </a-modal>
+  <JcxqModal :visible="detailsOpen" @colse="detailsOpen = false" />
+  <PhotoModal :visible="yuzhiVisisble" @colse="yuzhiVisisble = false" />
 </template>
 <script setup lang="ts">
+import JcxqModal from '@/components/JcxqModal.vue';
+import PhotoModal from '@/components/PtcjComponents/PhotoModal.vue';
+
 import { ref } from 'vue';
 import Img1 from '@/assets/images/zjcj/img1.png';
 import Img2 from '@/assets/images/zjcj/img2.png';
@@ -61,28 +137,29 @@ const props = defineProps<Props>();
 const emits = defineEmits(['colse']);
 const imgs = ref([Img1, Img3, Img2, Img4]);
 const code = ref('');
-const setVisible = ref(false)
-const photoVisisble = ref(false)
-
+const setVisible = ref(false);
+const detailsOpen = ref(false);
+const photoVisisble = ref(false);
+const yuzhiVisisble = ref(false);
 
 const photos = ref([
   {
     url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    name: '前围'
+    name: '前围',
   },
   {
     url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    name: '左侧'
+    name: '左侧',
   },
   {
     url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    name: '后围'
+    name: '后围',
   },
   {
     url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    name: '右侧'
-  }
-])
+    name: '右侧',
+  },
+]);
 const data = [
   {
     name: '颜色',
@@ -100,7 +177,7 @@ const data = [
     name: '空调位置',
     value: '10',
   },
-]
+];
 
 const columns = [
   {
@@ -118,12 +195,12 @@ const columns = [
     dataIndex: 'valueSet',
     key: 'valueSet',
     slots: { customRender: 'valueSet' },
-  }
-]
+  },
+];
 
 const onSearch = () => {
   console.log('code', code.value);
-}
+};
 </script>
 <style scoped lang="less">
 .content {
@@ -189,20 +266,19 @@ const onSearch = () => {
 }
 
 .table {
-
   :deep(.ant-table) {
     background-color: transparent;
   }
 
-  :deep(.ant-table-thead>tr>th) {
+  :deep(.ant-table-thead > tr > th) {
     background-color: rgba(0, 0, 0, 0.1);
   }
 
-  :deep(.ant-table-tbody>tr>td) {
+  :deep(.ant-table-tbody > tr > td) {
     background-color: transparent;
   }
 
-  :deep(.ant-table-tbody>tr:hover>td) {
+  :deep(.ant-table-tbody > tr:hover > td) {
     background-color: rgba(0, 0, 0, 0.05);
   }
 }
