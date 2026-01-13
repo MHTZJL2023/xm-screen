@@ -93,20 +93,19 @@
       </a-col>
     </a-row>
     <div class="footer">
-      <a-button
-        class="my-button-custom"
-        style="width: 100px"
-        @click="photoVisisble = false">
+      <a-button class="my-button-custom" style="width: 100px" @click="onStart">
         启动
       </a-button>
       <a-button
         class="my-button-custom"
-        style="width: 100px; margin-left: 20px">
+        style="width: 100px; margin-left: 20px"
+        @click="onStop">
         终止
       </a-button>
       <a-button
         class="my-button-custom"
-        style="width: 100px; margin-left: 20px">
+        style="width: 100px; margin-left: 20px"
+        @click="onReset">
         复位
       </a-button>
       <a-button
@@ -124,11 +123,18 @@
 import JcxqModal from '@/components/JcxqModal.vue';
 import PhotoModal from '@/components/PtcjComponents/PhotoModal.vue';
 
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import Img1 from '@/assets/images/zjcj/img1.png';
 import Img2 from '@/assets/images/zjcj/img2.png';
 import Img3 from '@/assets/images/zjcj/img3.png';
 import Img4 from '@/assets/images/zjcj/img4.png';
+import {
+  carReset,
+  carStart,
+  carStop,
+  getAgvResultStitch,
+  getCarDesignImage,
+} from '@/service/v1';
 
 interface Props {
   visible: boolean;
@@ -141,7 +147,7 @@ const setVisible = ref(false);
 const detailsOpen = ref(false);
 const photoVisisble = ref(false);
 const yuzhiVisisble = ref(false);
-
+const task_id = ref('');
 const photos = ref([
   {
     url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
@@ -197,10 +203,102 @@ const columns = [
     slots: { customRender: 'valueSet' },
   },
 ];
+const getPhoto = async () => {
+  try {
+    const res = await getCarDesignImage('R5U00688');
 
+    // const res =  {
+    //     leftDesignImage: "data:image/jpeg;base64,...",
+    //     rightDesignImage: "data:image/jpeg;base64,...",
+    //     frontDesignImage: "data:image/jpeg;base64,...",
+    //     afterDesignImage: "data:image/jpeg;base64,...",
+    //     clbh: 'R5U00688'
+    // },
+    photos.value = [
+      {
+        url: res.frontDesignImage,
+        name: '前围',
+      },
+      {
+        url: res.leftDesignImage,
+        name: '左侧',
+      },
+      {
+        url: res.afterDesignImage,
+        name: '后围',
+      },
+      {
+        url: res.rightDesignImage,
+        name: '右侧',
+      },
+    ];
+  } catch (err) {
+    console.log(err);
+  }
+};
 const onSearch = () => {
   console.log('code', code.value);
 };
+
+const getRightPhoto = async () => {
+  try {
+    const res = await getAgvResultStitch({ task_id: task_id.value });
+
+    imgs[3] = resizeBy.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+// 启动
+const onStart = async () => {
+  try {
+    const res = await carStart({
+      clbh: 'R5U00688',
+    });
+
+    // const res = {
+    //   current_state: 'running',
+    //   mode: 'auto',
+    //   params: {
+    //     photo_side: 'right',
+    //   },
+    //   start_time: '2023-10-05T14:48:00.000Z',
+    //   task_id: '20251226001',
+    // };
+    task_id.value = res.task_id;
+    getRightPhoto();
+    message.success('启动成功！');
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+// 终止
+const onStop = async () => {
+  try {
+    const res = await carStop();
+
+    message.success('终止成功！');
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+// 复位
+const onReset = async () => {
+  try {
+    const res = await carReset();
+
+    message.success('复位成功！');
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+onMounted(() => {
+  getPhoto();
+});
 </script>
 <style scoped lang="less">
 .content {
