@@ -244,7 +244,7 @@ const getRightPhoto = async () => {
   try {
     const res = await getAgvResultStitch({ task_id: task_id.value });
 
-    imgs[3] = resizeBy.data;
+    imgs.value[3] = res.data;
   } catch (err) {
     console.log(err);
   }
