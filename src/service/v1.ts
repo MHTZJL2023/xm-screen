@@ -1,13 +1,13 @@
 import request from '@/utils/request';
 
 const API = {
-  getCarDesignImage: "/api/v1/getCarDesignImage", // 获取车辆设计图
-  getAgvResultStitch: '/api/v1/getAgvResultStitch', // 获取拼接图⽚
-  uploadCarDesignImage: '/api/v1/uploadCarDesignImage', // 上传车辆设计图-测试
-  carDesignImageUpload: '/api/v1/carDesignImageUpload',// 上传车辆设计图-生产
-  carStart: '/api/v1/start', // 启动车辆
-  carReset: '/api/v1/reset', // 复位车辆
-  carStop: '/api/v1/stop', // 停止车辆
+  getCarDesignImage: "/api8/v1/getCarDesignImage", // 获取车辆设计图
+  getAgvResultStitch: '/api8/v1/getAgvResultStitch', // 获取拼接图⽚
+  uploadCarDesignImage: '/api8/v1/uploadCarDesignImage', // 上传车辆设计图-测试
+  carDesignImageUpload: '/api8/v1/carDesignImageUpload',// 上传车辆设计图-生产
+  carStart: '/api8/v1/start', // 启动车辆
+  carReset: '/api8/v1/reset', // 复位车辆
+  carStop: '/api8/v1/stop', // 停止车辆
 };
 
 // 获取车辆设计图
