@@ -29,22 +29,38 @@
     :footer="null"
     v-model:visible="visible"
     @cancel="visible = false"
-    width="60vw"
+    :width="isFullscreen ? '100vw' : '60vw'"
+    :height="isFullscreen ? '100%' : 'auto'"
     centered>
-    <iframe
-      src="http://192.168.1.9:8000/history#/person/?token=jGwv0xDzYaSVX0cV5EZ0"
-      width="100%"
-      height="600px"></iframe>
+    <div class="modal-content">
+      <div class="controls">
+        <a-button size="small" @click="toggleFullscreen" class="fullscreen-btn">
+          <ExpandOutlined v-if="!isFullscreen" />
+          <CompressOutlined v-else />
+        </a-button>
+      </div>
+      <iframe
+        ref="iframeRef"
+        src="http://192.168.1.9:8000/history#/person/?token=jGwv0xDzYaSVX0cV5EZ0"
+        :width="isFullscreen ? '100%' : '100%'"
+        :height="isFullscreen ? 'calc(100% - 120px)' : '600px'"
+        :style="{
+          border: 'none',
+          height: isFullscreen ? 'calc(100vh - 110px)' : '600px',
+        }"></iframe>
+    </div>
   </a-modal>
 </template>
 <script setup lang="ts">
 import BaseCard from '@/components/BaseCard/index.vue';
 
-import { onMounted, ref } from 'vue';
+import { CompressOutlined, ExpandOutlined } from '@ant-design/icons-vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 import { countPersonStatus } from '@/service/person';
 
 const personInfo = ref<any>({});
 const visible = ref(false);
+const isFullscreen = ref(false);
 const options = ref({
   color: ['#469485', '#3b7fa2'],
   tooltip: {
@@ -102,11 +118,54 @@ const getData = async () => {
     { value: res.outline, name: '离岗' },
   ];
 };
+
+const toggleFullscreen = async () => {
+  isFullscreen.value = !isFullscreen.value;
+
+  if (isFullscreen.value) {
+    // 进入全屏
+    document.body.style.overflow = 'hidden';
+  } else {
+    // 退出全屏
+    document.body.style.overflow = '';
+  }
+};
+
 onMounted(() => {
   getData();
 });
 </script>
 <style lang="less" scoped>
+.my-modal {
+  :deep(.ant-modal-content) {
+    padding: 0;
+  }
+
+  :deep(.ant-modal-header) {
+    border-radius: 8px 8px 0 0;
+  }
+}
+
+.modal-content {
+  position: relative;
+
+  .controls {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+
+    .fullscreen-btn {
+      background: rgba(152, 152, 152, 0.8);
+      border: 1px solid #d9d9d900;
+
+      &:hover {
+        background: rgba(152, 152, 152, 0.9);
+      }
+    }
+  }
+}
+
 .card {
   position: absolute;
   left: 20px;
@@ -123,7 +182,7 @@ onMounted(() => {
   padding: 2px 20px;
   line-height: 48px;
   font-size: 18px;
-  background-color: rgba(75, 162, 132, 0.3); // 偶数行浅色背景
+  background-color: rgba(75, 162, 132, 0.3);
   margin: 15px 0;
 }
 
