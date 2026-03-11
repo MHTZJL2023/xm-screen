@@ -23,6 +23,7 @@
     "echarts": "^6.0.0",
     "flv.js": "^1.6.2",
     "highcharts": "^12.3.0",
+    "jsencrypt": "^3.5.4",
     "lodash-es": "^4.17.21",
     "nprogress": "^0.2.0",
     "pinia": "^2.2.4",

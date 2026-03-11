@@ -122,7 +122,7 @@ const isLeftSelect = ref(false);
 const isRightSelect = ref(false);
 const leftList = ref([...LEFT_LIST]);
 const leftSelected = ref('');
-const rightList = ref([]);
+const rightList = ref([...RIGHT_LIST]);
 const rightSelected = ref('');
 const zzcjVisible = ref(false);
 
