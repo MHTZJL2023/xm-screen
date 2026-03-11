@@ -78,7 +78,7 @@ const onFinish = async () => {
     loading.value = true;
 
     message.success('登录成功！');
-    window.ue5('Web_登录成功');
+    window.ue5('Web_InitVideoToken', localStorage.getItem('access_token'));
     router.push('/safeProduction');
   } catch (error: any) {
     error && error.message

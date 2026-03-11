@@ -80,7 +80,8 @@ const refreshToken = async () => {
     if (res.data && res.data.data) {
       token.value = res.data.data.accessToken;
       console.log('Token获取成功:', token.value);
-      window.ue5('Token', token.value);
+      localStorage.setItem('access_token', token.value);
+      window.ue5('Web_RefreshVideoToken', token.value);
     }
     console.log('token 刷新成功', data);
   } catch (error: any) {

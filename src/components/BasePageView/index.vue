@@ -95,6 +95,10 @@
     </div>
   </div>
   <JcymModal :visible="detailsOpen" @colse="detailsOpen = false" />
+  <VideoListModal
+    :visible="videoVisible"
+    :data="rightSelected"
+    @colse="videoVisible = false" />
 </template>
 
 <script lang="ts" setup>
@@ -105,6 +109,7 @@ import Sbzt from '@/components/PtcjComponents/Sbzt.vue';
 import Sfgwgj from '@/components/PtcjComponents/Sfgwgj.vue';
 import Spjk from '@/components/PtcjComponents/Ssjk.vue';
 import Yzhtbdw from '@/components/PtcjComponents/Yzhtbdw.vue';
+import VideoListModal from '@/components/VideoListModal.vue';
 import Ktwjc from '@/components/ZjcjComponents/Ktwjc.vue';
 import Ssjk from '@/components/ZjcjComponents/Ssjk.vue';
 import Ystajc from '@/components/ZjcjComponents/Ystajc.vue';
@@ -125,7 +130,7 @@ const leftSelected = ref('');
 const rightList = ref([...RIGHT_LIST]);
 const rightSelected = ref('');
 const zzcjVisible = ref(false);
-
+const videoVisible = ref(false);
 const detailsOpen = ref(false);
 const previousWorkshop = ref<any>(null);
 
@@ -160,13 +165,9 @@ const changeSelected1 = (item: string) => {
     rightList.value = [];
   }
 };
-
 const changeSelected2 = (item: string) => {
-  if (item.value === rightSelected.value) {
-    rightSelected.value = '';
-    return;
-  }
-
+  console.log('changeSelected2', item);
+  videoVisible.value = true;
   rightSelected.value = item;
 };
 
