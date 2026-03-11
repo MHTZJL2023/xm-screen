@@ -94,11 +94,11 @@
       <slot name="footer"></slot>
     </div>
   </div>
-  <JcymModal :visible="detailsOpen" @colse="detailsOpen = false" />
+  <JcymModal :visible="detailsOpen" @close="detailsOpen = false" />
   <VideoListModal
     :visible="videoVisible"
     :data="rightSelected"
-    @colse="videoVisible = false" />
+    @close="videoVisible = false" />
 </template>
 
 <script lang="ts" setup>

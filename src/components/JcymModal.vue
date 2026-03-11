@@ -4,7 +4,7 @@
     title=""
     :footer="null"
     v-model:open="props.visible"
-    @cancel="emits('colse')"
+    @cancel="emits('close')"
     width="1000px"
     centered>
     <div class="content">
@@ -140,7 +140,7 @@ interface Props {
   visible: boolean;
 }
 const props = defineProps<Props>();
-const emits = defineEmits(['colse']);
+const emits = defineEmits(['close']);
 const imgs = ref([Img1, Img3, Img2, Img4]);
 const code = ref('');
 const setVisible = ref(false);
