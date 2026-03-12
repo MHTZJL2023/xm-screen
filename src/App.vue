@@ -7,14 +7,13 @@
 import { theme } from 'ant-design-vue';
 import zhCN from 'ant-design-vue/es/locale/zh_CN';
 import autofit from 'autofit.js';
-import axios from 'axios';
 import dayjs from 'dayjs';
 import JSEncrypt from 'jsencrypt';
 import { onUnmounted, ref } from 'vue';
 import { computed, nextTick, onMounted } from 'vue';
 import { system, title } from '@/config/index';
 import { useUEInterface } from '@/hooks';
-import { API, BASE_URL } from '@/service/video';
+import { getPublicKey, getToken } from '@/service/video';
 
 import 'dayjs/locale/zh-cn';
 
@@ -33,12 +32,17 @@ const getConfig = computed(() => ({
 // 定时器引用
 let tokenTimer: number | null = null;
 const token = ref('');
-const key = ref('');
-const getPublicKey = async () => {
-  console.log('开始获取公钥...', BASE_URL, API.getPublicKey);
+const key = ref('111');
+const publicKey = ref('');
+const getPublicKey2 = async () => {
   try {
-    const response = await axios.get(`${BASE_URL}${API.getPublicKey}`);
-    key.value = response.data.data.publicKey;
+    const response = await getPublicKey();
+    console.log('公钥获取成功:', response.publicKey);
+    publicKey.value = response.publicKey;
+    key.value =
+      '-----BEGIN PUBLIC KEY-----' +
+      response.publicKey +
+      '-----END PUBLIC KEY-----';
   } catch (error) {
     console.error('获取公钥失败:', error);
     throw error;
@@ -50,40 +54,33 @@ const getPublicKey = async () => {
  * @param {string} password 明文密码
  * @param {string} publicKey 公钥字符串
  */
-const encryptPassword = async (password, publicKey) => {
+const encryptPassword = (password, publicKey) => {
   const encryptor = new JSEncrypt();
   encryptor.setPublicKey(publicKey);
   const encrypted = encryptor.encrypt(password);
-  if (!encrypted) {
-    throw new Error('密码加密失败');
-  }
+  console.log('密码已加密:', encrypted);
   return encrypted;
 };
 
 /* 刷新 token */
 const refreshToken = async () => {
   try {
-    await getPublicKey();
-    const res = await axios.post(`${BASE_URL}${API.getToken}`, {
+    await getPublicKey2();
+    console.log('key.value', key.value);
+    const res = await getToken({
       username: 'system',
       password: encryptPassword('jlkc2026', key.value), // 实际开发建议参考ICC规范进行RSA加密
       grant_type: 'password',
-      public_key: key.value,
+      public_key: publicKey.value,
       client_id: 'futong',
       client_secret: '3465ee4b-bff5-4915-adee-82db6d58ac2b',
     });
-
-    if (!response.ok) {
-      throw new Error('token 刷新失败');
-    }
-    console.log('res:', res);
-    if (res.data && res.data.data) {
-      token.value = res.data.data.accessToken;
-      console.log('Token获取成功:', token.value);
-      localStorage.setItem('access_token', token.value);
-      window.ue5('Web_RefreshVideoToken', token.value);
-    }
-    console.log('token 刷新成功', data);
+    console.log('res:accessToken', res);
+    token.value = res.access_token;
+    console.log('Token获取成功:', token.value);
+    localStorage.setItem('access_token', res.token_type + ' ' + token.value);
+    window.ue5('Web_RefreshVideoToken', token.value);
+    console.log('token 刷新成功', token.value);
   } catch (error: any) {
     console.error('token 刷新异常:', error.message);
   }

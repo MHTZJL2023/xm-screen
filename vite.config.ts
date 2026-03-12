@@ -90,6 +90,11 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: path => path.replace(/^\/api/, ''),
       },
+      '/video': {
+        target: 'http://192.168.1.33:1998/',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/video/, ''),
+      },
     },
   },
 });
