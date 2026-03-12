@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://192.168.1.32:1998';
+export const BASE_URL = 'http://192.168.1.33:1998';
 
 export const API = {
   getPublicKey: '/platform/evo-apigw/evo-oauth/1.0.0/oauth/public-key', // 获取公钥

@@ -47,7 +47,7 @@
       </div>
       <iframe
         ref="iframeRef"
-        src="https://192.168.1.32/#/home"
+        src="https://192.168.1.33/#/home"
         :width="isFullscreen ? '100%' : '100%'"
         :height="isFullscreen ? 'calc(100% - 120px)' : '600px'"
         :style="{
