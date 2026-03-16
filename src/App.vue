@@ -79,6 +79,7 @@ const refreshToken = async () => {
     token.value = res.access_token;
     console.log('Token获取成功:', token.value);
     localStorage.setItem('access_token', res.token_type + ' ' + token.value);
+    localStorage.setItem('token', token.value);
     window.ue5('Web_RefreshVideoToken', token.value);
     console.log('token 刷新成功', token.value);
   } catch (error: any) {

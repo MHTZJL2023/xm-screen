@@ -95,6 +95,11 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: path => path.replace(/^\/video/, ''),
       },
+      '/singleVideo': {
+        target: 'http://192.168.1.32:443/',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/video/, ''),
+      },
     },
   },
 });
