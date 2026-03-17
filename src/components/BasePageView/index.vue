@@ -208,6 +208,7 @@ watch(
 
     .sel {
       cursor: pointer;
+      pointer-events: painted;
       width: 154px;
       height: 53px;
       background: url(@/assets/images/main/xuanzhonggongweibeijing.png);
@@ -219,11 +220,13 @@ watch(
       .selected {
         display: flex;
         align-items: center;
+        pointer-events: painted;
       }
 
       .sel_content {
         max-height: 200px;
         overflow-y: scroll;
+        pointer-events: painted;
 
         .item {
           width: 100%;
