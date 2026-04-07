@@ -244,8 +244,8 @@ const getData5 = async () => {
     //   }
     // ]
     options5.value.series[0].data = [
-      ['未达成率', 1 - res[0].rate],
-      ['达成率', res[0].rate],
+      ['未达成率', 1 - res[0]?.rate || 0],
+      ['达成率', res[0]?.rate || 0],
     ];
   } catch (err) {
     console.log(err);
